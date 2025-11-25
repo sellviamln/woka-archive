@@ -19,8 +19,11 @@ Route::post('/login', [AuthController::class, 'login_proses'])->name('login.pros
 
 // Hanya untuk admin
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function() {
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+    route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+    Route::resource('dokumen', DokumenController::class);
 });
+
+
 
 
 // Hanya untuk staff
