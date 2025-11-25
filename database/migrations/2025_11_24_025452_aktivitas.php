@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('aktivitas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
-            $table->foreignId('id_departemen')->constrained('departemen')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('departemen_id')->constrained('departemen')->cascadeOnDelete();
             $table->enum('aktivitas', ['upload', 'update', 'download', 'preview', 'delete']);
             $table->text('keterangan')->nullable();
             $table->timestamps();
 
-            $table->index(['id_user']);
-            $table->index(['id_departemen']);
         });
     }
 

@@ -10,7 +10,7 @@ class Departemen extends Model
 
     protected $fillable = [
         'nama_departemen',
-        'deskripsi',
+        
     ];
     public function staffs()
      { 

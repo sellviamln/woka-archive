@@ -12,8 +12,8 @@ class Aktivitas extends Model
     protected $table = 'aktivitas';
 
     protected $fillable = [
-        'id_user',
-        'id_departemen',
+        'user_id',
+        'departemen_id',
         'aktivitas',
         'keterangan',
     ];
@@ -21,12 +21,12 @@ class Aktivitas extends Model
     /** Relasi ke User */
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_user');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /** Relasi ke Departemen */
     public function departemen()
     {
-        return $this->belongsTo(Departemen::class, 'id_departemen');
+        return $this->belongsTo(Departemen::class, 'departemen_id');
     }
 }
