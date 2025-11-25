@@ -9,11 +9,12 @@
     @endif
 
     <div class="card">
-        <div class="card-header">
-            <h5 class="card-title">
-                <a href="{{route('admin.staff.create')}}" class="btn btn-primary">Tambah +</a>
-            </h5>
-        </div>
+         <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">Daftar Staff</h4>
+                    <a href="{{ route('admin.staff.create') }}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus"></i> Tambah Staff
+                    </a>
+                </div>
 
         <div class="card-body">
             <table class="table table-striped" id="table1">

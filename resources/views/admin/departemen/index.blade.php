@@ -3,7 +3,7 @@
 @section('title', 'Departemen')
 
 @section('content')
-<section class="section" style="padding-top: 80px;">
+<section class="section" >
     <div class="row">
         <div class="col-md-12">
 
