@@ -103,6 +103,12 @@
                   <p>Dokumen</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="{{ url('/admin/departemen') }}">
+                  <i class="fas fa-th-list"></i>
+                  <p>Departemen</p>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
