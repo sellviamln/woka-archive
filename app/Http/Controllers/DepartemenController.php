@@ -21,7 +21,7 @@ class DepartemenController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.departemen.create');
     }
 
     /**
@@ -29,7 +29,17 @@ class DepartemenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $request->validate([
+        'nama_departemen' => 'required|string|max:255|unique:departemen,nama_departemen',
+        'deskripsi' => 'nullable|string',
+    ]);
+
+    Departemen::create([
+        'nama_departemen' => $request->nama_departemen,
+        'deskripsi' => $request->deskripsi,
+    ]);
+
+    return redirect()->route('admin.departemen.index')->with('success', 'Departemen berhasil ditambahkan!');
     }
 
     /**
