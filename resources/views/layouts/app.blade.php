@@ -81,6 +81,8 @@
                   class="collapsed"
                   aria-expanded="false"
                 >
+                <li class="nav-item {{request()->routeIs('admin.dashboard.*') ? 'active' : ''}}">
+                <a  href="{{ route('admin.dashboard')}}">
                   <i class="fas fa-home"></i>
                   <p>Dashboard</p>
                 </a>
@@ -90,8 +92,8 @@
                   <i class="fa fa-ellipsis-h"></i>
                 </span>
               </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="{{ route('admin.staff.index')}}">
+              <li class="nav-item {{request()->routeIs('admin.staff.*') ? 'active' : ''}}">
+                <a  href="{{ route('admin.staff.index')}}">
                   <i class="fas fa-users fa-2x text-warning"></i>
                   <p>Staff</p>
                 </a>
@@ -102,12 +104,13 @@
                   <p>Dokumen</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="{{ url('/admin/departemen') }}">
+              <li class="nav-item  {{request()->routeIs('admin.departemen.*') ? 'active' : ''}}">
+                <a data-bs-toggle="collapse" href="{{ route('admin.departemen.index')}}">
                   <i class="fas fa-th-list"></i>
                   <p>Departemen</p>
                 </a>
               </li>
+
             </ul>
           </div>
         </div>
@@ -225,10 +228,7 @@
                           <div class="u-text">
                             <h4>Hizrian</h4>
                             <p class="text-muted">hello@example.com</p>
-                            <a
-                              href="profile.html"
-                              class="btn btn-xs btn-secondary btn-sm"
-                              >Logout</a>
+                            
                           </div>
                         </div>
                       </li>
@@ -251,24 +251,24 @@
               <ul class="nav">
                 <li class="nav-item">
                   <a class="nav-link" href="http://www.themekita.com">
-                    ThemeKita
+                    
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"> Help </a>
+                  <a class="nav-link" href="#">  </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"> Licenses </a>
+                  <a class="nav-link" href="#"> </a>
                 </li>
               </ul>
             </nav>
             <div class="copyright">
-              2024, made with <i class="fa fa-heart heart text-danger"></i> by
-              <a href="http://www.themekita.com">ThemeKita</a>
+              2025, made with <i class="fa fa-heart heart text-danger"></i> by
+              <a href="http://www.themekita.com">timtwo</a>
             </div>
             <div>
               Distributed by
-              <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
+              <a target="_blank" href="https://themewagon.com/">TimTwo</a>.
             </div>
           </div>
         </footer>

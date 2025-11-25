@@ -46,7 +46,7 @@
                             <label for="departemen_id">Departemen </label>
                             <select name="departemen_id" id="departemen_id" class="form-control"class="form-control">
                               <option value="">--Pilih Departemen--</option>
-                              @foreach($departemen as $d)
+                              @foreach($departemens as $d)
                               <option value="{{$d->id}}">{{ $d->nama_departemen }}</option>
                               @endforeach
                             </select>

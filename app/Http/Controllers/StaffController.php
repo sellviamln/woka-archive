@@ -22,7 +22,7 @@ class StaffController extends Controller
     {
         $users = User::where('role', 'staff')->get();
         $departemens = Departemen::all();
-        return view('admin.staff.create', compact('users', 'departements'));
+        return view('admin.staff.create', compact('users', 'departemens'));
     }
 
     public function store(Request $request)

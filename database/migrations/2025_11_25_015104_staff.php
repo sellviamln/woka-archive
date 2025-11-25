@@ -16,10 +16,10 @@ return new class extends Migration
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
-            $table->string('nama'); // Kalo ga wajib, bisa nullable
+            $table->string('nama'); 
             $table->string('jabatan');
 
-            // Relasi ke departemen
+            
             $table->foreignId('departemen_id')
                 ->constrained('departemen')
                 ->nullOnDelete();
@@ -31,10 +31,7 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
+    
     public function down(): void
     {
         Schema::dropIfExists('staff');
