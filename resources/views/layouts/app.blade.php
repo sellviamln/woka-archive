@@ -211,7 +211,7 @@
                     </div>
                     <span class="profile-username">
                       <span class="op-7">Hi,</span>
-                      <span class="fw-bold">Hizrian</span>
+                      <span class="fw-bold">{{ Auth::user()->name }}</span>
                     </span>
                   </a>
                   <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -264,11 +264,7 @@
             </nav>
             <div class="copyright">
               2025, made with <i class="fa fa-heart heart text-danger"></i> by
-              <a href="http://www.themekita.com">timtwo</a>
-            </div>
-            <div>
-              Distributed by
-              <a target="_blank" href="https://themewagon.com/">TimTwo</a>.
+              <a href="http://www.themekita.com">Kelompok 2 - Woka Archive</a>
             </div>
           </div>
         </footer>
