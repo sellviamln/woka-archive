@@ -91,7 +91,7 @@
                 </span>
               </li>
               <li class="nav-item">
-                <a data-bs-toggle="collapse">
+                <a data-bs-toggle="collapse" href="{{ route('admin.staff.index')}}">
                   <i class="fas fa-users fa-2x text-warning"></i>
                   <p>Staff</p>
                 </a>
