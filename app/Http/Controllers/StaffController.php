@@ -31,10 +31,8 @@ class StaffController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
-
-            'jabatan' => 'required',
             'departemen_id' => 'required',
-            'status' => 'required|in:active,inactive'
+
 
         ]);
 
@@ -47,25 +45,12 @@ class StaffController extends Controller
 
         Staff::create([
             'user_id' => $user->id,
-            'jabatan' => $request->jabatan,
             'departemen_id' => $request->departemen_id,
             'no_hp' => $request->no_hp,
-            'status' => $request->status,
 
         ]);
 
         return redirect()->route('admin.staff.index')->with('success', 'Data staff berhasil ditambahkan');
-    }
-
-    public function toggleStatus(Dokumen $dokumen)
-    {
-        $newStatus = $dokumen->status === 'active' ? 'inactive' : 'active';
-
-        $dokumen->update([
-            'status' => $newStatus
-        ]);
-
-        return back()->with('success', 'Status berhasil diubah!');
     }
 
     public function edit(Staff $staff)
@@ -77,9 +62,8 @@ class StaffController extends Controller
             abort(403, 'Anda tidak memiliki izin untuk mengedit data ini');
         }
 
-        $users = User::where('role', 'staff')->get();
         $departemens = Departemen::all();
-        return view('admin.staff.edit', compact('users', 'departemens'));
+        return view('admin.staff.edit', compact('staff', 'departemens'));
     }
 
     public function update(Request $request, Staff $staff)
@@ -124,5 +108,25 @@ class StaffController extends Controller
         $user->delete();
         $staff->delete();
         return redirect()->route('admin.staff.index')->with('success', 'Data staff berhasil dihapus');
+    }
+
+    // Set akses menjadi read
+    public function setRead($id)
+    {
+        $staff = Staff::findOrFail($id);
+        $staff->akses = 'read';
+        $staff->save();
+
+        return back()->with('success', 'Akses diubah menjadi READ');
+    }
+
+    // Set akses menjadi write
+    public function setWrite($id)
+    {
+        $staff = Staff::findOrFail($id);
+        $staff->akses = 'write';
+        $staff->save();
+
+        return back()->with('success', 'Akses diubah menjadi WRITE');
     }
 }

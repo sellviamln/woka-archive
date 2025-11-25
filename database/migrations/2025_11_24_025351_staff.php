@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('departemen_id')->constrained('departemen')->cascadeOnDelete();
             $table->string('no_hp');
-            $table->enum('akses', ['read', 'write']);
+            $table->enum('akses', ['read', 'write'])->nullable();
             $table->timestamps();
         });
     }

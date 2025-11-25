@@ -35,13 +35,7 @@
                             <div class="text-danger">{{ $message}}</div>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="jabatan">Jabatan</label>
-                            <input type="text" name="jabatan" class="form-control" id="jabatan">
-                            @error('jabatan')
-                            <div class="text-danger">{{ $message}}</div>
-                            @enderror
-                        </div>
+                       
                         <div class="form-group">
                             <label for="departemen_id">Departemen </label>
                             <select name="departemen_id" id="departemen_id" class="form-control"class="form-control">

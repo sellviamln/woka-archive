@@ -36,20 +36,13 @@
                             <div class="text-danger">{{ $message}}</div>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="jabatan">Jabatan</label>
-                            <input type="text" name="jabatan" class="form-control" id="jabatan" value="{{ old('jabatan', $staff->jabatan) }}">
-                            @error('jabatan')
-                            <div class="text-danger">{{ $message}}</div>
-                            @enderror
-                        </div>
 
                         <div class="form-group">
                             <label for="departemen_id">Departemen </label>
                             <select name="departemen_id" id="departemen_id" class="form-control" class="form-control">
                                 <option value="">--Pilih Departemen--</option>
-                                @foreach($kelas as $k)
-                                <option value="{{$k->id}}" {{ old('departemen_id', $staff->departemen_id) == $d->id ? 'selected' : ''}}>{{ $d->nama_departemen }}</option>
+                                @foreach($departemens as $d)
+                                <option value="{{$d->id}}" {{ old('departemen_id', $staff->departemen_id) == $d->id ? 'selected' : ''}}>{{ $d->nama_departemen }}</option>
                                 @endforeach
                             </select>
                             @error('departemen_id')
@@ -58,7 +51,7 @@
                         </div>
                         <div class="form-group">
                             <label for="no_hp">No Hp</label>
-                            <input type="int" name="no_hp" class="form-control" id="no_hp" value="{{ old('no_hp', $siswa->no_hp) }}">
+                            <input type="int" name="no_hp" class="form-control" id="no_hp" value="{{ old('no_hp', $staff->no_hp) }}">
                             @error('no_hp')
                             <div class="text-danger">{{ $message}}</div>
                             @enderror

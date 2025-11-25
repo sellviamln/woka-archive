@@ -92,6 +92,12 @@
                   <i class="fa fa-ellipsis-h"></i>
                 </span>
               </li>
+              <li class="nav-item">
+                <a href="{{ url('/admin/departemen') }}">
+                  <i class="fas fa-th-list"></i>
+                  <p>Departemen</p>
+                </a>
+              </li>
               <li class="nav-item {{request()->routeIs('admin.staff.*') ? 'active' : ''}}">
                 <a  href="{{ route('admin.staff.index')}}">
                   <i class="fas fa-users fa-2x text-warning"></i>
@@ -104,12 +110,7 @@
                   <p>Dokumen</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="{{ url('/admin/departemen') }}">
-                  <i class="fas fa-th-list"></i>
-                  <p>Departemen</p>
-                </a>
-              </li>
+              
 
             </ul>
           </div>
