@@ -104,8 +104,13 @@
                   <p>Dokumen</p>
                 </a>
               </li>
+<<<<<<< HEAD
               <li class="nav-item  {{request()->routeIs('admin.departemen.*') ? 'active' : ''}}">
                 <a data-bs-toggle="collapse" href="{{ route('admin.departemen.index')}}">
+=======
+              <li class="nav-item">
+                <a href="{{ url('/admin/departemen') }}">
+>>>>>>> 8daf5d1092606b914bcb8a8d8c4a8a30752b5e31
                   <i class="fas fa-th-list"></i>
                   <p>Departemen</p>
                 </a>

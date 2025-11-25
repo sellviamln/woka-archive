@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('aktivitas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
-            $table->foreignId('id_departemen')->constrained('departmen')->onDelete('cascade');
+            $table->foreignId('id_departemen')->constrained('departemen')->onDelete('cascade');
             $table->enum('aktivitas', ['upload', 'update', 'download', 'preview', 'delete']);
             $table->text('keterangan')->nullable();
             $table->timestamps();

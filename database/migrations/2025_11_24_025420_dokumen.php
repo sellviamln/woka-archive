@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('dokumen', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_departement')->constrained('departmen')->onDelete('cascade');
+            $table->foreignId('id_departement')->constrained('departemen')->onDelete('cascade');
             $table->foreignId('id_kategori')->nullable()->constrained('kategori')->nullOnDelete();
             $table->integer('no_dokumen')->nullable();
             $table->string('judul', 255);
