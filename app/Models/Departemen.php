@@ -12,4 +12,8 @@ class Departemen extends Model
         'nama_departemen',
         'deskripsi',
     ];
+    public function staffs()
+     { 
+        return $this->hasMany(Staff::class, 'departemen_id');
+     }
 }

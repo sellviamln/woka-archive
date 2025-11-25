@@ -10,12 +10,12 @@
     />
     <link
       rel="icon"
-      href="assets/img/kaiadmin/favicon.ico"
+      href="{{asset('assets/img/kaiadmin/favicon.ico')}}"
       type="image/x-icon"
     />
 
     <!-- Fonts and icons -->
-    <script src="assets/js/plugin/webfont/webfont.min.js"></script>
+    <script src="{{asset('assets/js/plugin/webfont/webfont.min.js')}}"></script>
     <script>
       WebFont.load({
         google: { families: ["Public Sans:300,400,500,600,700"] },
@@ -26,7 +26,7 @@
             "Font Awesome 5 Brands",
             "simple-line-icons",
           ],
-          urls: ["assets/css/fonts.min.css"],
+          urls: ["{{asset('assets/css/fonts.min.css')}}"],
         },
         active: function () {
           sessionStorage.fonts = true;
@@ -89,17 +89,16 @@
                 <span class="sidebar-mini-icon">
                   <i class="fa fa-ellipsis-h"></i>
                 </span>
-                <h4 class="text-section">Components</h4>
               </li>
               <li class="nav-item">
                 <a data-bs-toggle="collapse">
-                  <i class="fas fa-layer-group"></i>
+                  <i class="fas fa-users fa-2x text-warning"></i>
                   <p>Staff</p>
                 </a>
                 </li>
               <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarLayouts">
-                  <i class="fas fa-th-list"></i>
+                  <i class="fas fa-folder fa-2x text-primary"></i>
                   <p>Dokumen</p>
                 </a>
               </li>
@@ -212,7 +211,7 @@
                         <div class="user-box">
                           <div class="avatar-lg">
                             <img
-                              src="assets/img/profile.jpg"
+                              src="{{asset('assets/img/profile.jpg')}}"
                               alt="image profile"
                               class="avatar-img rounded"
                             />
