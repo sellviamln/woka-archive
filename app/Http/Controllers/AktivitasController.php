@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class AktivitasController extends Controller
 {
-    //
+    public function coba()
+    {
+
+    }
 }
