@@ -13,21 +13,10 @@ return new class extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
-
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
-            $table->string('nama'); // Kalo ga wajib, bisa nullable
-            $table->string('jabatan');
-
-            // Relasi ke departemen
-            $table->foreignId('departemen_id')
-                ->constrained('departemen')
-                ->nullOnDelete();
-
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('departemen_id')->constrained('departemen')->cascadeOnDelete();
             $table->string('no_hp');
-
-            $table->enum('status', ['active', 'inactive'])->default('active');
-
+            $table->enum('akses', ['read', 'write']);
             $table->timestamps();
         });
     }
