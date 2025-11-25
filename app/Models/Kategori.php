@@ -20,6 +20,6 @@ class Kategori extends Model
     /** Relasi: Satu kategori punya banyak dokumen */
     public function dokumens()
     {
-        return $this->hasMany(Dokumen::class, 'id_kategori');
+        return $this->hasMany(Dokumen::class, 'kategori_id');
     }
 }

@@ -9,16 +9,18 @@ class Dokumen extends Model
      protected $table = 'dokumen';
 
     protected $fillable = [
-        'id_departemen',
-        'id_kategori',
+        'departemen_id',
+        'kategori_id',
         'no_dokumen',
         'judul',
         'tipe_file',
-        'dokumens',
+        'dokumen',
         'deskripsi',
         'status',
         'tanggal_upload',
-        'tanggal_kadaluarsa'
+        'tanggal_kadaluarsa',
+        'uploaded_by',
+
     ];
 
     protected $casts = [
@@ -29,11 +31,11 @@ class Dokumen extends Model
     /** 🔗 Relasi */
     public function department()
     {
-        return $this->belongsTo(Departemen::class, 'id_departement');
+        return $this->belongsTo(Departemen::class, 'departemen_id');
     }
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'id_kategori');
+        return $this->belongsTo(Kategori::class, 'kategori_id');
     }
 }

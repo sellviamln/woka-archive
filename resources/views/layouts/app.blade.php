@@ -10,12 +10,12 @@
     />
     <link
       rel="icon"
-      href="assets/img/kaiadmin/favicon.ico"
+      href="{{asset('assets/img/kaiadmin/favicon.ico')}}"
       type="image/x-icon"
     />
 
     <!-- Fonts and icons -->
-    <script src="assets/js/plugin/webfont/webfont.min.js"></script>
+    <script src="{{asset('assets/js/plugin/webfont/webfont.min.js')}}"></script>
     <script>
       WebFont.load({
         google: { families: ["Public Sans:300,400,500,600,700"] },
@@ -26,7 +26,7 @@
             "Font Awesome 5 Brands",
             "simple-line-icons",
           ],
-          urls: ["assets/css/fonts.min.css"],
+          urls: ["{{asset('assets/css/fonts.min.css')}}"],
         },
         active: function () {
           sessionStorage.fonts = true;
@@ -81,6 +81,8 @@
                   class="collapsed"
                   aria-expanded="false"
                 >
+                <li class="nav-item {{request()->routeIs('admin.dashboard.*') ? 'active' : ''}}">
+                <a  href="{{ route('admin.dashboard')}}">
                   <i class="fas fa-home"></i>
                   <p>Dashboard</p>
                 </a>
@@ -89,20 +91,31 @@
                 <span class="sidebar-mini-icon">
                   <i class="fa fa-ellipsis-h"></i>
                 </span>
-                <h4 class="text-section">Components</h4>
               </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse">
-                  <i class="fas fa-layer-group"></i>
+              <li class="nav-item {{request()->routeIs('admin.staff.*') ? 'active' : ''}}">
+                <a  href="{{ route('admin.staff.index')}}">
+                  <i class="fas fa-users fa-2x text-warning"></i>
                   <p>Staff</p>
                 </a>
                 </li>
               <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarLayouts">
-                  <i class="fas fa-th-list"></i>
+                  <i class="fas fa-folder fa-2x text-primary"></i>
                   <p>Dokumen</p>
                 </a>
               </li>
+<<<<<<< HEAD
+              <li class="nav-item  {{request()->routeIs('admin.departemen.*') ? 'active' : ''}}">
+                <a data-bs-toggle="collapse" href="{{ route('admin.departemen.index')}}">
+=======
+              <li class="nav-item">
+                <a href="{{ url('/admin/departemen') }}">
+>>>>>>> 8daf5d1092606b914bcb8a8d8c4a8a30752b5e31
+                  <i class="fas fa-th-list"></i>
+                  <p>Departemen</p>
+                </a>
+              </li>
+
             </ul>
           </div>
         </div>
@@ -212,7 +225,7 @@
                         <div class="user-box">
                           <div class="avatar-lg">
                             <img
-                              src="assets/img/profile.jpg"
+                              src="{{asset('assets/img/profile.jpg')}}"
                               alt="image profile"
                               class="avatar-img rounded"
                             />
@@ -220,10 +233,7 @@
                           <div class="u-text">
                             <h4>Hizrian</h4>
                             <p class="text-muted">hello@example.com</p>
-                            <a
-                              href="profile.html"
-                              class="btn btn-xs btn-secondary btn-sm"
-                              >Logout</a>
+                            
                           </div>
                         </div>
                       </li>
@@ -246,24 +256,24 @@
               <ul class="nav">
                 <li class="nav-item">
                   <a class="nav-link" href="http://www.themekita.com">
-                    ThemeKita
+                    
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"> Help </a>
+                  <a class="nav-link" href="#">  </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"> Licenses </a>
+                  <a class="nav-link" href="#"> </a>
                 </li>
               </ul>
             </nav>
             <div class="copyright">
-              2024, made with <i class="fa fa-heart heart text-danger"></i> by
-              <a href="http://www.themekita.com">ThemeKita</a>
+              2025, made with <i class="fa fa-heart heart text-danger"></i> by
+              <a href="http://www.themekita.com">timtwo</a>
             </div>
             <div>
               Distributed by
-              <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
+              <a target="_blank" href="https://themewagon.com/">TimTwo</a>.
             </div>
           </div>
         </footer>

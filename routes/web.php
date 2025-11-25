@@ -20,6 +20,8 @@ Route::post('/login', [AuthController::class, 'login_proses'])->name('login.pros
 // Hanya untuk admin
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+    Route::resource('departemen', DepartemenController::class); 
+    Route::resource('staff', StaffController::class);
 });
 
 

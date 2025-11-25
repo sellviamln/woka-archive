@@ -2,29 +2,26 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Aktivitas extends Model
+class Staff extends Model
 {
-    use HasFactory;
-
-    protected $table = 'aktivitas';
+    protected $table = 'staff';
 
     protected $fillable = [
         'user_id',
+        'nama',
+        'jabatan',
         'departemen_id',
-        'aktivitas',
-        'keterangan',
+        'no_hp',
+        'status'
     ];
 
-    /** Relasi ke User */
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    /** Relasi ke Departemen */
     public function departemen()
     {
         return $this->belongsTo(Departemen::class, 'departemen_id');
