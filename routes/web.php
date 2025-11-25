@@ -26,6 +26,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 
     Route::patch('/staff/{id}/akses/read', [StaffController::class, 'setRead'])->name('staff.akses.read');
     Route::patch('/staff/{id}/akses/write', [StaffController::class, 'setWrite'])->name('staff.akses.write');
+
+    Route::resource('dokumen', DokumenController::class);
 });
 
 
