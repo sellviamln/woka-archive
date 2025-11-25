@@ -23,7 +23,7 @@
                     </div>
                     <div>
                         <p class="text-muted mb-0">Total Dokumen</p>
-                        <h4 class="fw-bold">{{ $totalDokumen ?? 0 }}</h4>
+                        <h4 class="fw-bold">{{ $totalDokumen  }}</h4>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                     </div>
                     <div>
                         <p class="text-muted mb-0">Kategori</p>
-                        <h4 class="fw-bold">{{ $totalKategori ?? 0 }}</h4>
+                        <h4 class="fw-bold">{{ $totalKategori  }}</h4>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     </div>
                     <div>
                         <p class="text-muted mb-0">Departemen</p>
-                        <h4 class="fw-bold">{{ $totalDepartemen ?? 0 }}</h4>
+                        <h4 class="fw-bold">{{ $totalDepartemen  }}</h4>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                     </div>
                     <div>
                         <p class="text-muted mb-0">Staff Pengelola</p>
-                        <h4 class="fw-bold">{{ $totalStaff ?? 0 }}</h4>
+                        <h4 class="fw-bold">{{ $totalStaff  }}</h4>
                     </div>
                 </div>
             </div>
