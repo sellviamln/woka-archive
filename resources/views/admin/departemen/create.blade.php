@@ -30,16 +30,6 @@
                             @enderror
                         </div>
 
-                        <div class="form-group mb-4">
-                            <label for="deskripsi" class="form-label">Deskripsi</label>
-                            <textarea name="deskripsi" id="deskripsi"
-                                class="form-control @error('deskripsi') is-invalid @enderror"
-                                rows="4">{{ old('deskripsi') }}</textarea>
-
-                            @error('deskripsi')
-                            <div class="invalid-feedback small">{{ $message }}</div>
-                            @enderror
-                        </div>
 
                         <button type="submit" class="btn btn-primary btn-sm w-100">
                             <i class="fas fa-save"></i> Simpan Data
