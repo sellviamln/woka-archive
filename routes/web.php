@@ -9,6 +9,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StaffController;
 use Illuminate\Support\Facades\Route;
+use NunoMaduro\Collision\Adapters\Phpunit\State;
 
 // Login halaman
 
@@ -18,15 +19,19 @@ Route::post('/login', [AuthController::class, 'login_proses'])->name('login.pros
 
 
 // Hanya untuk admin
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function() {
-    route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+    Route::resource('departemen', DepartemenController::class);
+    Route::resource('staff', StaffController::class);
+
+    Route::patch('/staff/{id}/akses/read', [StaffController::class, 'setRead'])->name('staff.akses.read');
+    Route::patch('/staff/{id}/akses/write', [StaffController::class, 'setWrite'])->name('staff.akses.write');
+
     Route::resource('dokumen', DokumenController::class);
 });
 
 
-
-
-// Hanya untuk staff
+// Hanya untuk staff 
 Route::middleware(['auth', 'staff'])->group(function () {
     Route::get('/staff', [StaffController::class, 'index'])->name('staff.dashboard');
 });

@@ -13,21 +13,21 @@ return new class extends Migration
     {
         Schema::create('dokumen', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_departement')->constrained('departmen')->onDelete('cascade');
-            $table->foreignId('id_kategori')->nullable()->constrained('kategori')->nullOnDelete();
-            $table->integer('no_dokumen')->nullable();
-            $table->string('judul', 255);
-            $table->string('tipe_file', 100)->nullable();
-            $table->string('dokumen', 500); // path or url
+            $table->foreignId('departemen_id')->constrained('departemen')->cascadeOnDelete();
+            $table->foreignId('kategori_id')->constrained('kategori')->cascadeOnDelete();
+            $table->string('no_dokumen')->nullable();
+            $table->string('judul');
+            $table->string('tipe_file', 100);
+            $table->string('dokumen'); 
             $table->text('deskripsi')->nullable();
             $table->enum('status', ['active', 'archive'])->default('active');
             $table->date('tanggal_upload')->nullable();      // tanggal di-upload
             $table->date('tanggal_kadaluarsa')->nullable();
+            $table->foreignId('uploaded_by')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
 
-            $table->index(['id_departement']);
-            $table->index(['id_kategori']);
-            $table->unique(['id_departement', 'no_dokumen']);
+            $table->unique(['departemen_id', 'no_dokumen']);
+           
         });
     }
 

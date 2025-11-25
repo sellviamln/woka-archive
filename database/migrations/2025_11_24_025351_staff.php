@@ -11,22 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('aktivitas', function (Blueprint $table) {
+        Schema::create('staff', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('departemen_id')->constrained('departemen')->cascadeOnDelete();
-            $table->enum('aktivitas', ['upload', 'update', 'download', 'preview', 'delete']);
-            $table->text('keterangan')->nullable();
+            $table->string('no_hp');
+            $table->enum('akses', ['read', 'write'])->nullable();
             $table->timestamps();
-
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
+    
     public function down(): void
     {
-        Schema::dropIfExists('aktivitas');
+        Schema::dropIfExists('staff');
     }
 };

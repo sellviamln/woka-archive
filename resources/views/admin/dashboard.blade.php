@@ -10,7 +10,7 @@
             <p class="text-muted">Sistem Arsip Dokumen — Woka Archive</p>
         </div>
         <div>
-            <a href="#" class="btn btn-primary btn-sm">Tambah Dokumen</a>
+            <a href="{{ route('login')}}" class="btn btn-primary btn-sm">Logout</a>
         </div>
     </div>
 
@@ -75,7 +75,7 @@
     {{-- Tabel Aktivitas Mulai --}}
     <div class="card mt-5 shadow-sm border-0 rounded-3">
         <div class="card-header bg-white">
-            <h5 class="fw-bold mb-0">Aktivitas Terbaru</h5>
+            <h5 class="fw-bold mb-0">History</h5>
         </div>
         <div class="card-body p-0">
             <table class="table table-hover table-striped mb-0">
