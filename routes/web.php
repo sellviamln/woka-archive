@@ -23,6 +23,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('departemen', DepartemenController::class);
     Route::resource('staff', StaffController::class);
+    
 
     Route::patch('/staff/{id}/akses/read', [StaffController::class, 'setRead'])->name('staff.akses.read');
     Route::patch('/staff/{id}/akses/write', [StaffController::class, 'setWrite'])->name('staff.akses.write');
