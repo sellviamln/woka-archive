@@ -106,14 +106,12 @@
                 <p>Staff</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a data-bs-toggle="collapse" href="#sidebarLayouts">
+            <li class="nav-item {{request()->routeIs('admin.dokumen.*') ? 'active' : ''}}">
+              <a href="{{ route('admin.dokumen.index')}}">
                 <i class="fas fa-folder fa-2x text-primary"></i>
                 <p>Dokumen</p>
               </a>
             </li>
-
-
           </ul>
         </div>
       </div>
