@@ -21,10 +21,9 @@
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>Jabatan</th>
                         <th>Departemen</th>
                         <th>No HP</th>
-                        <th>Status</th>
+                        <th>Akses</th>
                         <th>Action</th>
 
                     </tr>
@@ -34,26 +33,58 @@
                     <tr>
                         <td class="border p-2">{{ $loop->iteration }}</td>
                         <td class="border p-2">{{ $staff->user->name }}</td>
-                        <td class="border p-2">{{ $staff->jabatan }}</td>
-                        <td class="border p-2">{{ $staff->departemen }}</td>
+                        <td class="border p-2">{{ $staff->departemen->nama_departemen }}</td>
                         <td class="border p-2">{{ $staff->no_hp}}</td>
-                        <form action="{{ route('admin.dokumen.toggle-status', $dokumen->id) }}" method="POST" style="display:inline">
-                            @csrf
-                            @method('PATCH')
-
-                            @if($dokumen->status === 'active')
-                            <button class="btn btn-success btn-sm">Active</button>
-                            @else
-                            <button class="btn btn-secondary btn-sm">Inactive</button>
-                            @endif
-                        </form>
                         <td>
-                            <a href="{{ route('admin.staff.edit', $staff->id) }}" class="btn btn-warning btn-sm">Active</a>
+                            <form action="" method="POST" style="display:inline">
+                                @csrf
+                                @method('PATCH')
+
+                                {{-- Akses: null -> dua-duanya aktif --}}
+                                @if($staff->akses === null)
+                                <button formaction="{{route('admin.staff.akses.read', $staff->id)}}"
+                                    class="btn btn-success btn-sm">
+                                    Read
+                                </button>
+
+                                <button formaction="{{route('admin.staff.akses.write', $staff->id)}}"
+                                    class="btn btn-secondary btn-sm">
+                                    Write
+                                </button>
+
+                                {{-- Akses: read -> hanya Write aktif --}}
+                                @elseif($staff->akses === 'read')
+                                <button class="btn btn-success btn-sm" disabled>
+                                    Read
+                                </button>
+
+                                <button formaction="{{route('admin.staff.akses.write', $staff->id)}}"
+                                    class="btn btn-secondary btn-sm">
+                                    Write
+                                </button>
+
+                                {{-- Akses: write -> hanya Read aktif --}}
+                                @elseif($staff->akses === 'write')
+                                <button formaction="{{route('admin.staff.akses.read', $staff->id)}}"
+                                    class="btn btn-success btn-sm">
+                                    Read
+                                </button>
+
+                                <button class="btn btn-secondary btn-sm" disabled>
+                                    Write
+                                </button>
+                                @endif
+
+                            </form>
+                        </td>
+
+                        <td>
+                            <a href="{{ route('admin.staff.edit', $staff->id) }}" class="btn btn-warning btn-sm">Edit</a>
                             <form class="d-inline" action="{{ route('admin.staff.destroy', $staff->id)}}" method="post" onsubmit="return confirm('Yakin ingin hapus data ini?')">
                                 @csrf
                                 @method('DELETE')
 
-                                <button type="submit" class="btn btn-danger btn-sm">Inactive</button>
+                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
                             </form>
                         </td>
 
