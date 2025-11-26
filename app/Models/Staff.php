@@ -10,11 +10,10 @@ class Staff extends Model
 
     protected $fillable = [
         'user_id',
-        'nama',
-        'jabatan',
+        'foto',
         'departemen_id',
         'no_hp',
-        'status'
+        'akses'
     ];
 
     public function user()

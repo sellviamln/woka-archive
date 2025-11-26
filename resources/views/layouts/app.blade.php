@@ -3,13 +3,13 @@
 
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>>@yield('title', 'Dashboard')</title>
+  <title>@yield('title', 'Dashboard')</title>
   <meta
     content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     name="viewport" />
   <link
     rel="icon"
-    href="{{asset('assets/img/kaiadmin/favicon.ico')}}"
+    href="{{asset('assets/img/kaiadmin/logo-woka.png')}}"
     type="image/x-icon" />
 
   <!-- Fonts and icons -->
@@ -83,6 +83,8 @@
                 href="#dashboard"
                 class="collapsed"
                 aria-expanded="false">
+
+                @if(auth()->user()->role == 'admin')
             <li class="nav-item {{request()->routeIs('admin.dashboard.*') ? 'active' : ''}}">
               <a href="{{ route('admin.dashboard')}}">
                 <i class="fas fa-home"></i>
@@ -100,6 +102,12 @@
                 <p>Departemen</p>
               </a>
             </li>
+             <li class="nav-item {{request()->routeIs('admin.kategori.*') ? 'active' : ''}}">
+              <a href="{{ route('admin.kategori.index')}}">
+                <i class="fas fa-folder-open fa-2x text-primary"></i>
+                <p>Kategori</p>
+              </a>
+            </li>
             <li class="nav-item {{request()->routeIs('admin.staff.*') ? 'active' : ''}}">
               <a href="{{ route('admin.staff.index')}}">
                 <i class="fas fa-users fa-2x text-warning"></i>
@@ -112,10 +120,41 @@
                 <p>Dokumen</p>
               </a>
             </li>
+            @endif
+
+            @if(auth()->user()->role == 'staff')
+
+            <li
+              class="nav-item {{request()->routeIs('staff.dashboard') ? 'active' : ''}} ">
+              <a href="{{ route('staff.dashboard')}}">
+                <i class="fas fa-home"></i>
+                <p>Dashboard</p>
+              </a>
+            </li>
+
+            <li
+              class="nav-item ">
+              <a href="">
+                <i class="fas fa-folder fa-2x text-primary"></i>
+                <p>Kelola Dokumen</p>
+              </a>
+            </li>
+
+
+            <li
+              class="nav-item {{request()->routeIs('staff.profile.*') ? 'active' : ''}}">
+              <a href="{{route('staff.profile')}}">
+                <i class="fas fa-users fa-2x text-warning"></i>
+                <p>Profile</p>
+              </a>
+            </li>
+
+            @endif
           </ul>
         </div>
       </div>
     </div>
+
     <!-- End Sidebar -->
 
     <div class="main-panel">
@@ -218,8 +257,12 @@
                             class="avatar-img rounded" />
                         </div>
                         <div class="u-text">
-                          <h4>Hi Admin</h4>
-                          <p class="text-muted">admin@woka.com</p>
+                          <span class="profile-username">
+                            <span class="op-7">Hi,</span>
+                            <span class="fw-bold">{{ Auth::user()->name }}</span>
+                            <span class="fw-bold">{{ Auth::user()->email }}</span>
+                          </span>
+                          
 
                         </div>
                       </div>

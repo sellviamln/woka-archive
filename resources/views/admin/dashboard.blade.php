@@ -75,31 +75,97 @@
     {{-- Tabel Aktivitas Mulai --}}
     <div class="card mt-5 shadow-sm border-0 rounded-3">
         <div class="card-header bg-white">
-            <h5 class="fw-bold mb-0">History</h5>
+            <h5 class="fw-bold mb-0">Aktivitas</h5>
         </div>
         <div class="card-body p-0">
             <table class="table table-hover table-striped mb-0">
-                <thead>
-                    <tr>
-                        <th>Staff</th>
-                        <th>Aktivitas</th>
-                        <th class="text-end">Tanggal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($aktivitas ?? [] as $a)
-                    <tr>
-                        <td>{{ $a->user->name }}</td>
-                        <td>{{ $a->keterangan }}</td>
-                        <td class="text-end">{{ $a->created_at->format('d M Y H:i') }}</td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="3" class="text-center text-muted py-3">Belum ada aktivitas.</td>
-                    </tr>
-                    @endforelse
-                </tbody>
-            </table>
+    <thead>
+        <tr>
+            <th>Staff</th>
+            <th>Departemen</th>
+            <th>Aktivitas</th>
+            <th>Keterangan</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @forelse($aktivitas as $a)
+        <tr>
+            <td>{{ $a->user->name }}</td>
+            <td>{{ $a->departemen->nama_departemen }}</td>
+            <td>{{ ucfirst($a->aktivitas) }}</td>
+            <td>{{ $a->keterangan }}</td>
+            <td>
+                <button type="button" 
+                        class="btn btn-info btn-sm" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#detailAktivitas{{ $a->id }}">
+                    Detail
+                </button>
+            </td>
+        </tr>
+
+        <!-- MODAL DETAIL -->
+        <div class="modal fade" id="detailAktivitas{{ $a->id }}" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Detail Aktivitas</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label class="form-label">Staff</label>
+                            <input type="text" class="form-control" value="{{ $a->user->name }}" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Departemen</label>
+                            <input type="text" class="form-control" value="{{ $a->departemen->nama_departemen }}" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Aktivitas</label>
+                            <input type="text" class="form-control" value="{{ ucfirst($a->aktivitas) }}" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Keterangan</label>
+                            <textarea class="form-control" rows="3" disabled>{{ $a->keterangan }}</textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Waktu Aktivitas</label>
+                            <input type="text" class="form-control" value="{{ $a->created_at->format('d-m-Y H:i') }}" disabled>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- END MODAL -->
+
+        @empty
+        <tr>
+            <td colspan="5" class="text-center text-muted py-3">
+                Belum ada aktivitas.
+            </td>
+        </tr>
+        @endforelse
+    </tbody>
+</table>
+
         </div>
     </div>
     {{-- Tabel Aktivitas End --}}
