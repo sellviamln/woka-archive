@@ -19,11 +19,11 @@ Route::post('/login', [AuthController::class, 'login_proses'])->name('login.pros
 
 
 // Hanya untuk admin
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin',])->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('departemen', DepartemenController::class);
     Route::resource('staff', StaffController::class);
-    
+
 
     Route::patch('/staff/{id}/akses/read', [StaffController::class, 'setRead'])->name('staff.akses.read');
     Route::patch('/staff/{id}/akses/write', [StaffController::class, 'setWrite'])->name('staff.akses.write');
@@ -33,6 +33,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 
 
 // Hanya untuk staff 
-Route::middleware(['auth', 'staff'])->group(function () {
-    Route::get('/staff', [StaffController::class, 'index'])->name('staff.dashboard');
+Route::prefix('staff')->name('staff.')->middleware(['auth', 'role:staff'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/profile', [StaffController::class, 'profile'])->name('profile');
+    Route::put('/profile/update', [StaffController::class, 'profileUpdate'])->name('profile.update');
 });
