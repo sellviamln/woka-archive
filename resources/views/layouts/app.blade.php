@@ -3,13 +3,13 @@
 
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>>@yield('title', 'Dashboard')</title>
+  <title>@yield('title', 'Dashboard')</title>
   <meta
     content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     name="viewport" />
   <link
     rel="icon"
-    href="{{asset('assets/img/kaiadmin/favicon.ico')}}"
+    href="{{asset('assets/img/kaiadmin/logo-woka.png')}}"
     type="image/x-icon" />
 
   <!-- Fonts and icons -->
@@ -98,6 +98,12 @@
               <a href="{{ url('/admin/departemen') }}">
                 <i class="fas fa-th-list"></i>
                 <p>Departemen</p>
+              </a>
+            </li>
+             <li class="nav-item {{request()->routeIs('admin.kategori.*') ? 'active' : ''}}">
+              <a href="{{ route('admin.kategori.index')}}">
+                <i class="fas fa-folder-open fa-2x text-primary"></i>
+                <p>Kategori</p>
               </a>
             </li>
             <li class="nav-item {{request()->routeIs('admin.staff.*') ? 'active' : ''}}">
