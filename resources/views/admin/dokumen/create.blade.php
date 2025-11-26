@@ -17,20 +17,13 @@
                         <div class="form-group">
                             <label for="dokumen">Dokumen</label>
                             <input type="file" name="dokumen" class="form-control" id="dokumen">
-                            @error('dokumen')
-                                <div class="invalidate-feedback">{{ $message }}</div>
-                            @enderror
                         </div>
 
-                        <!-- Tipe File Otomatis -->
                         <div class="form-group">
                             <label for="tipe_file">Tipe File</label>
-                            <input type="text" name="tipe_file" class="form-control" 
-                                   id="tipe_file" value="{{ old('tipe_file') }}" readonly>
-                            @error('tipe_file')
-                                <div class="invalidate-feedback">{{ $message }}</div>
-                            @enderror
+                            <input type="text" name="tipe_file" class="form-control" id="tipe_file" readonly>
                         </div>
+
 
                         <div class="form-group">
                             <label for="judul">Judul</label>
@@ -48,8 +41,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="departemen">Departemen</label>
-                            <select name="departemen" class="form-control">
+                            <label for="departemen_id">Departemen</label>
+                            <select name="departemen_id" class="form-control">
                                 <option value="">--Pilih--</option>
                                 @foreach($departemens as $departemen)
                                 <option value="{{ $departemen->id }}">{{ $departemen->nama_departemen }}</option>
@@ -58,8 +51,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="kategori">Kategori</label>
-                            <select name="kategori" class="form-control">
+                            <label for="kategori_id">Kategori</label>
+                            <select name="kategori_id" class="form-control">
                                 <option value="">--Pilih--</option>
                                 @foreach($kategoris as $kategori)
                                 <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
@@ -85,7 +78,6 @@
                             <button type="submit" class="btn btn-primary">Simpan</button>
                             <a href="{{ route('admin.dokumen.index') }}" class="btn btn-black">Batal</a>
                         </div>
-
                     </div>
                 </div>
             </form>
@@ -93,21 +85,26 @@
     </div>
 </section>
 
-@endsection
-
-@section('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Ambil extension otomatis
-    document.getElementById('dokumen').addEventListener('change', function () {
-        let file = this.files[0];
-        if (file) {
-            let ext = file.name.split('.').pop().toLowerCase();
-            document.getElementById('tipe_file').value = ext;
+    const fileInput = document.getElementById('dokumen');
+    const tipeFileInput = document.getElementById('tipe_file');
+
+    fileInput.addEventListener('change', function () {
+        if (this.files.length > 0) {
+
+            let fileName = this.files[0].name;
+
+            // ambil ekstensi
+            let ext = fileName.split('.').pop().toLowerCase();
+
+            // tampilkan di input tipe file
+            tipeFileInput.value = ext;
         }
     });
 
 });
 </script>
+
 @endsection
