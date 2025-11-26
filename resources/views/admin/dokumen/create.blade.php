@@ -1,117 +1,113 @@
 @extends('layouts.app')
-
 @section('title', 'Tambah Dokumen')
-
 @section('content')
 
-<section class="section" style="padding-top: 80px;">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="card-title">Tambah Dokumen</h4>
-                </div>
+<section class="section">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Tambah Dokumen</h4>
+        </div>
+        <div class="card-body">
+            <form action="{{ route('admin.dokumen.store')}}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="row">
+                    <div class="col-md-12">
 
-                <div class="card-body">
-                    {{-- Form harus menggunakan enctype="multipart/form-data" untuk mengunggah file --}}
-                    <form action="{{ route('admin.dokumen.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-
-                        <div class="row">
-
-                            {{-- Kolom Kiri: Judul & File --}}
-                            <div class="col-md-6">
-
-                                <div class="form-group">
-                                    <label for="judul">Judul Dokumen</label>
-                                    <input type="text"
-                                        class="form-control @error('judul') is-invalid @enderror"
-                                        id="judul"
-                                        name="judul"
-                                        value="{{ old('judul') }}"
-                                        required>
-                                    @error('judul')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="tipe_file">Pilih File</label>
-                                    {{-- **PENTING**: Mengubah name dari 'file' menjadi 'tipe_file' agar sesuai dengan DokumenController --}}
-                                    <input type="file"
-                                        class="form-control @error('tipe_file') is-invalid @enderror"
-                                        id="tipe_file"
-                                        name="tipe_file"
-                                        required>
-                                    @error('tipe_file')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                    <small class="form-text text-muted">Format diizinkan: PDF, DOCX, JPG, JPEG, PNG. Maksimal 10MB.</small>
-                                </div>
-                            </div>
-
-                            {{-- Kolom Kanan: Tanggal Upload, Kadaluarsa, Status --}}
-                            <div class="col-md-6">
-
-                                <div class="form-group">
-                                    <label for="tanggal_upload">Tanggal Upload</label>
-                                    <input type="date"
-                                        class="form-control @error('tanggal_upload') is-invalid @enderror"
-                                        id="tanggal_upload"
-                                        name="tanggal_upload"
-                                        value="{{ old('tanggal_upload', date('Y-m-d')) }}"
-                                        required>
-                                    @error('tanggal_upload')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="tanggal_kadaluarsa">Tanggal Kadaluarsa</label>
-                                    <input type="date"
-                                        class="form-control @error('tanggal_kadaluarsa') is-invalid @enderror"
-                                        id="tanggal_kadaluarsa"
-                                        name="tanggal_kadaluarsa"
-                                        value="{{ old('tanggal_kadaluarsa') }}">
-                                    @error('tanggal_kadaluarsa')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="status">Status</label>
-                                    <select name="status" id="status" class="form-control @error('status') is-invalid @enderror" required>
-                                        <option value="">Pilih Status</option>
-                                        {{-- Nilai value harus 'active' dan 'archive' (huruf kecil) agar sesuai dengan validasi controller --}}
-                                        <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Active</option>
-                                        <option value="archive" {{ old('status') == 'archive' ? 'selected' : '' }}>Archive</option>
-                                    </select>
-                                    @error('status')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-
+                        <!-- Upload Dokumen -->
                         <div class="form-group">
-                            <label for="deskripsi">Deskripsi (Opsional)</label>
-                            {{-- Jika Anda ingin menyimpan deskripsi, pastikan kolom 'deskripsi' ada di tabel/model Dokumen --}}
-                            <textarea class="form-control " id="deskripsi" name="deskripsi" rows="4">{{ old('deskripsi') }}</textarea>
-                            @error('deskripsi')
-                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            <label for="dokumen">Dokumen</label>
+                            <input type="file" name="dokumen" class="form-control" id="dokumen">
+                            @error('dokumen')
+                                <div class="invalidate-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <div class="card-action mt-4">
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
-                            <a href="{{ route('admin.dokumen.index') }}" class="btn btn-black"><i class="fas fa-times"></i> Batal</a>
+                        <!-- Tipe File Otomatis -->
+                        <div class="form-group">
+                            <label for="tipe_file">Tipe File</label>
+                            <input type="text" name="tipe_file" class="form-control" 
+                                   id="tipe_file" value="{{ old('tipe_file') }}" readonly>
+                            @error('tipe_file')
+                                <div class="invalidate-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-                    </form>
+
+                        <div class="form-group">
+                            <label for="judul">Judul</label>
+                            <input type="text" name="judul" class="form-control" id="judul">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tanggal_upload">Tanggal Upload</label>
+                            <input type="date" name="tanggal_upload" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tanggal_kadaluarsa">Tanggal Kadaluarsa</label>
+                            <input type="date" name="tanggal_kadaluarsa" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="departemen">Departemen</label>
+                            <select name="departemen" class="form-control">
+                                <option value="">--Pilih--</option>
+                                @foreach($departemens as $departemen)
+                                <option value="{{ $departemen->id }}">{{ $departemen->nama_departemen }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="kategori">Kategori</label>
+                            <select name="kategori" class="form-control">
+                                <option value="">--Pilih--</option>
+                                @foreach($kategoris as $kategori)
+                                <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select name="status" class="form-control">
+                                <option value="">--Pilih--</option>
+                                <option value="active">Active</option>
+                                <option value="archive">Archive</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="deskripsi">Deskripsi</label>
+                            <textarea name="deskripsi" rows="5" class="form-control"></textarea>
+                        </div>
+
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <a href="{{ route('admin.dokumen.index') }}" class="btn btn-black">Batal</a>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
-
-
 </section>
+
+@endsection
+
+@section('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    // Ambil extension otomatis
+    document.getElementById('dokumen').addEventListener('change', function () {
+        let file = this.files[0];
+        if (file) {
+            let ext = file.name.split('.').pop().toLowerCase();
+            document.getElementById('tipe_file').value = ext;
+        }
+    });
+
+});
+</script>
 @endsection

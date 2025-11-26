@@ -3,53 +3,86 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dokumen;
+use App\Models\Departemen;
+use App\Models\kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DokumenController extends Controller
 {
+
     public function index()
     {
-        $dokumens = Dokumen::all();
+        $dokumens = Dokumen::with(['departemen','kategori'])
+            ->orderBy('tanggal_upload','desc')
+            ->get();
+
         return view('admin.dokumen.index', compact('dokumens'));
     }
+
     public function create()
     {
-        return view('admin.dokumen.create');
+        $departemens = Departemen::all();
+        $kategoris   = kategori::all();
+        $dokumens    = Dokumen::all();
+
+        return view('admin.dokumen.create', compact('departemens','kategoris','dokumens'));
     }
+
+    
     public function store(Request $request)
     {
-        $request->validate([
-            'judul' => 'required',
-            'tipe_file' => 'required|file|mimes:pdf,docx,jpg,jpeg,png',
-            'tanggal_upload' => 'required',
-            'tanggal_kadaluarsa' => 'required|date|after:tanggal_upload',
-            'status' => 'required|in:active,archive',
-        ]);
-        if ($request->hasFile('tipe_file')) {
-            $filePath = $request->file('tipe_file')->store('dokumen', 'public');
-            $validatedData['tipe_file'] = $filePath; 
-        }
+            // $request->validate([
+            //     'judul'          =>'required',
+            //     'departemen_id'   => 'required',    
+            //     'kategori_id'      => 'required',    
+            //     'tanggal_upload'  => 'required|date',
+            //     'tanggal_kadaluarsa' => 'required|date',
+            //     'status'     => 'required',
+            //     'tipe_file'  => 'required', 
+            //     'deskripsi'   => 'nullable',
+            //     'dokumen' => 'required|file|max:50000|mimes:docx,jpg,jpeg,png,pdf',
 
-        if ($request->hasFile('dokumentasi')) {
-            $dokumentasiPath = $request->file('dokumentasi')->store('dokumentasi', 'public');
-            $validatedData['dokumentasi'] = $dokumentasiPath;
-        } else {
-            $validatedData['dokumentasi'] = null;
-        }
-        
+
+            // ]);
+
+        $filePath = $request->file('dokumen')->store('dokumen', 'public');
+
         Dokumen::create([
-            'judul' => $request->judul,
-            'tipe_file' => $request->tipe_file,
-            'tanggal_upload' => $request->tanggal_upload,
+            'no_dokumen'    => 'DOC-' . time(), 
+            'departemen_id'  => $request->departemen_id,
+            'kategori_id'   => $request->kategori_id,
+            'judul'     => $request->judul,
+            'tanggal_upload'  => $request->tanggal_upload,
             'tanggal_kadaluarsa' => $request->tanggal_kadaluarsa,
-            'status' => $request->status,
+            'status'         => $request->status,
+            'tipe_file'      => $request->tipe_file,
+            'deskripsi'   => $request->deskripsi,
+            'dokumen'   => $filePath,
         ]);
 
-
-        return redirect()->route('admin.dokumen.index')->with('success', 'Dokumen berhasil ditambahkan.'); {
-        }
-
+        return redirect()->route('admin.dokumen.index')
+            ->with('success', 'Dokumen berhasil ditambahkan.');
     }
-   
 
+    /*
+    public function download($id)
+    {
+        $dokumen = Dokumen::findOrFail($id);
+
+        return Storage::disk('public')->download($dokumen->dokumen);
+    }
+*/
+        public function destroy($id)
+    {
+        $dokumen = Dokumen::findOrFail($id);
+
+        if (Storage::disk('public')->exists($dokumen->dokumen)) {
+            Storage::disk('public')->delete($dokumen->dokumen);
+        }
+        $dokumen->delete();
+
+        return redirect()->route('admin.dokumen.index')
+            ->with('success', 'Dokumen berhasil dihapus.');
+    }
 }
