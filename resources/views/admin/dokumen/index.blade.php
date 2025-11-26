@@ -3,14 +3,14 @@
 @section('title', 'Dokumen')
 
 @section('content')
-<section class="section" style="padding-top: 80px;">
+<section class="section" >
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="card-title">Daftar Dokumen</h4>
                     <a href="{{ route('admin.dokumen.create') }}" class="btn btn-primary btn-sm">
-                        <i class="fas fa-plus"></i> + Tambah Dokumen
+                        <i class="fas fa-plus"></i> Tambah Dokumen
                     </a>
                 </div>
                 <div class="card-body">

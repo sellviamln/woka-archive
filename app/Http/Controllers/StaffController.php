@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class StaffController extends Controller
 {
@@ -17,6 +18,7 @@ class StaffController extends Controller
         $staffs = Staff::with(['user', 'departemen'])->get();
         return view('admin.staff.index', compact('staffs'));
     }
+
 
     public function create()
     {
@@ -74,9 +76,9 @@ class StaffController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
 
-            'jabatan' => 'required',
+            'no_hp' => 'required',
             'departemen_id' => 'required',
-            'status' => 'required|in:active,inactive'
+            'status' => 'required|in:read,write'
 
         ]);
 
@@ -92,7 +94,6 @@ class StaffController extends Controller
 
         $staff->update([
             'user_id' => $user->id,
-            'jabatan' => $request->jabatan,
             'departemen_id' => $request->departemen_id,
             'no_hp' => $request->no_hp,
             'status' => $request->status,
@@ -128,5 +129,57 @@ class StaffController extends Controller
         $staff->save();
 
         return back()->with('success', 'Akses diubah menjadi WRITE');
+    }
+
+    public function profile()
+    {
+        $staff = Staff::where('user_id', Auth::user()->id)->first();
+        return view('staff.profile.index', compact('staff'));
+    }
+
+
+
+    public function profileUpdate(Request $request)
+    {
+        $user = Auth::user();
+        $staff = $user->staff;
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'nullable|min:8',
+
+            'no_hp' => 'required ',
+            'foto' => 'nullable|image|mimes:jpg,png,jpeg',
+        ]);
+
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        // Update tabel users
+        $dataUser = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $user->password,
+        ];
+
+        // Update tabel staff
+        $dataStaff = [
+            'no_hp' => $request->no_hp,
+        ];
+
+        if ($request->hasFile('foto')) {
+            if ($staff->foto && Storage::disk('public')->exists($staff->foto)) {
+                Storage::disk('public')->delete($staff->foto);
+            }
+            $dataStaff['foto'] = $request->file('foto')->store('profile', 'public');
+        }
+
+        $user->update($dataUser);
+
+        $staff->update($dataStaff);
+
+        return redirect()->route('staff.profile')->with('success', 'Profil berhasil diperbarui.');
     }
 }
