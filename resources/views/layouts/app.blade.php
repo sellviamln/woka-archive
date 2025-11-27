@@ -95,6 +95,12 @@
                 <p>Departemen</p>
               </a>
             </li>
+             <li class="nav-item {{request()->routeIs('admin.kategori.*') ? 'active' : ''}}">
+              <a href="{{ route('admin.kategori.index')}}">
+                <i class="fas fa-folder-open fa-2x text-primary"></i>
+                <p>Kategori</p>
+              </a>
+            </li>
             <li class="nav-item {{request()->routeIs('admin.staff.*') ? 'active' : ''}}">
               <a href="{{ route('admin.staff.index')}}">
                 <i class="fas fa-users fa-2x text-warning"></i>

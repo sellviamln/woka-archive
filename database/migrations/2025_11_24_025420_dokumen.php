@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('dokumen'); 
             $table->text('deskripsi')->nullable();
             $table->enum('status', ['active', 'archive'])->default('active');
-            $table->date('tanggal_upload')->nullable();      // tanggal di-upload
+            $table->date('tanggal_upload')->nullable();      
             $table->date('tanggal_kadaluarsa')->nullable();
             $table->foreignId('uploaded_by')->constrained('users')->cascadeOnDelete();
             $table->timestamps();

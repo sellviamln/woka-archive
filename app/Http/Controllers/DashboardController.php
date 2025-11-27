@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aktivitas;
 use App\Models\Departemen;
 use App\Models\Dokumen;
 use App\Models\Kategori;
@@ -19,13 +20,15 @@ class DashboardController extends Controller
         $totalKategori = Kategori::count();
         $totalDokumen = Dokumen::count();
         $totalStaff = User::where('role', 'staff')->count();
+        $aktivitas = Aktivitas::with('staff')->get();
 
         return view('admin.dashboard', compact(
             'user',
             'totalDepartemen',
             'totalKategori',
             'totalDokumen',
-            'totalStaff'
+            'totalStaff',
+            'aktivitas'
         ));
     }
 
