@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dokumen extends Model
 {
-     protected $table = 'dokumen';
+    protected $table = 'dokumen';
 
     protected $fillable = [
         'departemen_id',
@@ -29,13 +29,18 @@ class Dokumen extends Model
     ];
 
     /** 🔗 Relasi */
-    public function department()
+    public function departemen()
     {
         return $this->belongsTo(Departemen::class, 'departemen_id');
     }
 
-    public function category()
+    public function kategori()
     {
         return $this->belongsTo(Kategori::class, 'kategori_id');
+    }
+
+    public function uploader()
+    {
+        return $this->belongsTo(User::class, 'uploaded_by');
     }
 }

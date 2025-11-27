@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('departemen', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama_departemen', 100);
-            $table->timestamps();
+        Schema::table('staff', function (Blueprint $table) {
+            $table->string('foto')->nullable()->after('akses');
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('departemen');
+        Schema::table('staff', function (Blueprint $table) {
+            //
+        });
     }
 };

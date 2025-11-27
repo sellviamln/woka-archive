@@ -9,5 +9,5 @@ class AktivitasController extends Controller
     public function coba()
     {
 
-    }
+    }                                     
 }
