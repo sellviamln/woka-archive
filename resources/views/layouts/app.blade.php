@@ -3,13 +3,13 @@
 
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>>@yield('title', 'Dashboard')</title>
+  <title>@yield('title', 'Dashboard')</title>
   <meta
     content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     name="viewport" />
   <link
     rel="icon"
-    href="{{asset('assets/img/kaiadmin/favicon.ico')}}"
+    href="{{asset('assets/img/kaiadmin/logo-woka.png')}}"
     type="image/x-icon" />
 
   <!-- Fonts and icons -->
@@ -55,7 +55,7 @@
               src="{{asset('assets/img/kaiadmin/logo-woka.png')}}"
               alt="navbar brand"
               class="navbar-brand"
-              height="20" />
+              height="40" />
             <span class="fw-bold text-white" style="font-size: 16px; padding-left:8px;">
               Woka Archive
             </span>
@@ -77,13 +77,6 @@
       <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
           <ul class="nav nav-secondary">
-            <li class="nav-item active">
-              <a
-                data-bs-toggle="collapse"
-                href="#dashboard"
-                class="collapsed"
-                aria-expanded="false">
-
                 @if(auth()->user()->role == 'admin')
             <li class="nav-item {{request()->routeIs('admin.dashboard.*') ? 'active' : ''}}">
               <a href="{{ route('admin.dashboard')}}">
