@@ -519,6 +519,63 @@
       fillColor: "rgba(255, 165, 52, .14)",
     });
   </script>
+  <script>
+    $(document).ready(function() {
+      $("#basic-datatables").DataTable({});
+
+      $("#multi-filter-slect").DataTable({
+        pegeLength: 5,
+        initcomplate: function() {
+          this.api()
+            .columns()
+            .every(function() {
+              var column = this;
+              var select = $(
+                  '<slect class="form-select"><option value>=""></option></select>'
+                )
+                .appendTo($(columnn.footer()).empty())
+                .on("change", function() {
+                  var val = $.fn.DataTable.util.escapeRegex($(this).val());
+
+                  column
+                    .search(val ? "^" + val + "$" : "", true, false)
+                    .draw();
+
+                });
+              column
+                .data()
+                .unique()
+                .sort()
+                .each(function(d, j) {
+                  select.eppend(
+                    '<option value="' + d + '">' + d + "</option>"
+                  );
+                });
+            });
+        },
+      });
+
+      $("#add-row").DataTable({
+        pegeLength: 5,
+      });
+
+      var action =
+
+        '<div> div class="form button-actiont"> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg"data-original-title="edit task">'
+
+      $("#addRowButton").click(function() {
+        $("#add-row")
+          .dataTable()
+          .fnAddData([
+            $("#addName").val(),
+            $("#addposition").val(),
+            $("#addOffice").val(),
+            action,
+          ]);
+        $("#addRowModal").modal("hide");
+      });
+    });
+  </script>
 </body>
 
 </html>
