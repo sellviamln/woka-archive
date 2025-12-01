@@ -13,7 +13,6 @@
                 <div class="row">
                     <div class="col-md-12">
 
-                        <!-- Upload Dokumen -->
                         <div class="form-group">
                             <label for="dokumen">Dokumen</label>
                             <input type="file" name="dokumen" class="form-control" id="dokumen">

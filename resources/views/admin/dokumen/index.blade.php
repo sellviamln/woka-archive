@@ -41,16 +41,29 @@
                         <td>{{ $dokumen->tanggal_kadaluarsa}}</td>
                         <td>
 
-                            <div class="d-flex flex-wrap gap-2 w-100">
-                                <form class="d-inline" action="{{ route('admin.dokumen.destroy', $dokumen->id)}}" method="post" onsubmit="return confirm('yakin ingin menghapus?')">
+                            <div class="d-flex flex-wrap gap-2">
+                                {{-- TOMBOL EDIT --}}
+                                <a href="{{ route('admin.dokumen.edit', $dokumen->id) }}" class="btn btn-warning btn-sm" title="Edit Dokumen">
+                                    Edit
+                                </a>
+
+                                {{-- TOMBOL HAPUS (DELETE FORM) --}}
+                                {{-- Tambahkan class 'd-inline' dan 'm-0' pada form agar sejajar dengan tombol lain --}}
+                                <form action="{{ route('admin.dokumen.destroy', $dokumen->id) }}" method="POST" class="d-inline m-0"
+                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus dokumen: {{ $dokumen->judul }}? Aksi ini tidak dapat dibatalkan.')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" title="Hapus Dokumen">
+                                        Hapus
+                                    </button>
                                 </form>
-                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detailDokumen{{ $dokumen->id }}">
+
+                                {{-- TOMBOL DETAIL (MODAL TRIGGER) --}}
+                                <button type="button" class="btn btn-info btn-sm" title="Lihat Detail Dokumen"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#detailDokumen{{ $dokumen->id }}">
                                     Detail
                                 </button>
-
                             </div>
                         </td>
                     </tr>
