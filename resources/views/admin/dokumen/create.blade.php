@@ -61,15 +61,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="status">Status</label>
-                            <select name="status" class="form-control">
-                                <option value="">--Pilih--</option>
-                                <option value="active">Active</option>
-                                <option value="archive">Archive</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
                             <label for="deskripsi">Deskripsi</label>
                             <textarea name="deskripsi" rows="5" class="form-control"></textarea>
                         </div>

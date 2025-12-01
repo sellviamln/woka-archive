@@ -130,6 +130,24 @@ class StaffController extends Controller
 
         return back()->with('success', 'Akses diubah menjadi WRITE');
     }
+     public function setActive($id)
+    {
+        $staff = User::findOrFail($id);
+        $staff->status = 'active';
+        $staff->save();
+
+        return back()->with('success', 'status diubah menjadi ACTIVE');
+    }
+
+    // Set akses menjadi write
+    public function setInactive($id)
+    {
+        $staff = User::findOrFail($id);
+        $staff->status = 'inactive';
+        $staff->save();
+
+        return back()->with('success', 'Status diubah menjadi Inactive');
+    }
 
     public function profile()
     {

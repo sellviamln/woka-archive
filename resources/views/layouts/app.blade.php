@@ -95,16 +95,16 @@
                 <p>Departemen</p>
               </a>
             </li>
-             <li class="nav-item {{request()->routeIs('admin.kategori.*') ? 'active' : ''}}">
-              <a href="{{ route('admin.kategori.index')}}">
-                <i class="fas fa-folder-open fa-2x text-primary"></i>
-                <p>Kategori</p>
-              </a>
-            </li>
             <li class="nav-item {{request()->routeIs('admin.staff.*') ? 'active' : ''}}">
               <a href="{{ route('admin.staff.index')}}">
                 <i class="fas fa-users fa-2x text-warning"></i>
                 <p>Staff</p>
+              </a>
+            </li>
+            <li class="nav-item {{request()->routeIs('admin.kategori.*') ? 'active' : ''}}">
+              <a href="{{ route('admin.kategori.index')}}">
+                <i class="fas fa-folder-open fa-2x text-primary"></i>
+                <p>Kategori</p>
               </a>
             </li>
             <li class="nav-item {{request()->routeIs('admin.dokumen.*') ? 'active' : ''}}">
@@ -180,20 +180,6 @@
         <nav
           class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
           <div class="container-fluid">
-            <nav
-              class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <button type="submit" class="btn btn-search pe-1">
-                    <i class="fa fa-search search-icon"></i>
-                  </button>
-                </div>
-                <input
-                  type="text"
-                  placeholder="Search ..."
-                  class="form-control" />
-              </div>
-            </nav>
 
 
             <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
@@ -254,6 +240,7 @@
                             <span class="op-7">Hi,</span>
                             <span class="fw-bold">{{ Auth::user()->name }}</span>
                             <span class="fw-bold">{{ Auth::user()->email }}</span>
+                             <a href="{{ route('login')}}" class="btn btn-xs btn-secondary btn-sm">Logout</a>
                           </span>
                           
 
