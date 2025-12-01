@@ -16,7 +16,7 @@
         </div>
 
         <div class="card-body">
-            <table class="table table-striped" id="table1">
+            <table class="table table-striped" id="basic-datatables">
                 <thead>
                     <tr>
                         <th>No</th>

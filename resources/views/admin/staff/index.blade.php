@@ -17,13 +17,14 @@
                 </div>
 
         <div class="card-body">
-            <table class="table table-striped" id="table1">
+            <table class="table table-striped" id="basic-datatables">
                 <thead>
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
                         <th>Departemen</th>
                         <th>No HP</th>
+                        <th>Status</th>
                         <th>Akses</th>
                         <th>Action</th>
 
@@ -36,6 +37,48 @@
                         <td class="border p-2">{{ $staff->user->name }}</td>
                         <td class="border p-2">{{ $staff->departemen->nama_departemen }}</td>
                         <td class="border p-2">{{ $staff->no_hp}}</td>
+                        <td>
+                            <form action="" method="POST" style="display:inline">
+                                @csrf
+                                @method('PATCH')
+
+                                {{-- Status: null -> dua-duanya aktif --}}
+                                @if($staff->status === null)
+                                <button formaction="{{route('admin.user.status.active', $staff->user_id)}}"
+                                    class="btn btn-success btn-sm">
+                                    Active
+                                </button>
+
+                                <button formaction="{{route('admin.user.status.inactive', $staff->user_id)}}"
+                                    class="btn btn-secondary btn-sm">
+                                    Inactive
+                                </button>
+
+                                {{-- Status: active -> hanya inactive aktif --}}
+                                @elseif($staff->status === 'active')
+                                <button class="btn btn-success btn-sm" disabled>
+                                    Active
+                                </button>
+
+                                <button formaction="{{route('admin.user.status.inactive', $staff->user_id)}}"
+                                    class="btn btn-secondary btn-sm">
+                                    Inactive
+                                </button>
+
+                                {{-- Akses: inactive -> hanya active aktif --}}
+                                @elseif($staff->status === 'inactive')
+                                <button formaction="{{route('admin.user.status.active', $staff->user_id)}}"
+                                    class="btn btn-success btn-sm">
+                                    Active
+                                </button>
+
+                                <button class="btn btn-secondary btn-sm" disabled>
+                                    Inactive
+                                </button>
+                                @endif
+
+                            </form>
+                        </td>
                         <td>
                             <form action="" method="POST" style="display:inline">
                                 @csrf

@@ -10,7 +10,7 @@
             <p class="text-muted">Sistem Arsip Dokumen — Woka Archive</p>
         </div>
         <div>
-            <a href="{{ route('login')}}" class="btn btn-primary btn-sm">Logout</a>
+            
         </div>
     </div>
 

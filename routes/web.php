@@ -25,6 +25,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin',])->gro
     Route::resource('kategori', KategoriController::class);
     Route::resource('staff', StaffController::class);
 
+    Route::patch('/user/{id}/status/active', [StaffController::class, 'setActive'])->name('user.status.active');
+    Route::patch('/user/{id}/status/inactive', [StaffController::class, 'setInactive'])->name('user.status.inactive');
+
 
     Route::patch('/staff/{id}/akses/read', [StaffController::class, 'setRead'])->name('staff.akses.read');
     Route::patch('/staff/{id}/akses/write', [StaffController::class, 'setWrite'])->name('staff.akses.write');

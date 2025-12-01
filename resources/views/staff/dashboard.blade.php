@@ -10,7 +10,7 @@
             <p class="text-muted">Sistem Arsip Dokumen — Woka Archive</p>
         </div>
         <div>
-            <a href="{{ route('login')}}" class="btn btn-primary btn-sm">Logout</a>
+           
         </div>
     </div>
 
@@ -43,39 +43,49 @@
             </div>
         </div>
 
-    
 
-    {{-- Tabel Aktivitas Mulai --}}
-    <div class="card mt-5 shadow-sm border-0 rounded-3">
-        <div class="card-header bg-white">
-            <h5 class="fw-bold mb-0">History</h5>
+
+        {{-- Tabel Aktivitas Mulai --}}
+        <div class="card mt-5 shadow-sm border-0 rounded-3">
+            <div class="card-header bg-white">
+                <h5 class="fw-bold mb-0">Aktivitas</h5>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-hover table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th>Staff</th>
+                            <th>Departemen</th>
+                            <th>Aktivitas</th>
+                            <th>Keterangan</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($aktivitas ?? [] as $a)
+                        <tr>
+                            <td>{{ $a->user->name }}</td>
+                            <td>{{ $a->departemen->nama_departemen }}</td>
+                            <td>{{ ucfirst($a->aktivitas) }}</td>
+                            <td>{{ $a->keterangan }}</td>
+                            <td><button type="button"
+                                    class="btn btn-info btn-sm"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#detailAktivitas{{ $a->id }}">
+                                    Detail
+                                </button></td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="6" class="text-center text-muted py-3">Belum ada aktivitas.</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="card-body p-0">
-            <table class="table table-hover table-striped mb-0">
-                <thead>
-                    <tr>
-                        <th>Staff</th>
-                        <th>Aktivitas</th>
-                        <th class="text-end">Tanggal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($aktivitas ?? [] as $a)
-                    <tr>
-                        <td>{{ $a->user->name }}</td>
-                        <td>{{ $a->keterangan }}</td>
-                        <td class="text-end">{{ $a->created_at->format('d M Y H:i') }}</td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="3" class="text-center text-muted py-3">Belum ada aktivitas.</td>
-                    </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+        {{-- Tabel Aktivitas End --}}
+
     </div>
-    {{-- Tabel Aktivitas End --}}
-
-</div>
-@endsection
+    @endsection

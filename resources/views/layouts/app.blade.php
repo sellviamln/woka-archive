@@ -3,7 +3,7 @@
 
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>@yield('title', 'Dashboard')</title>
+  <title>Woka Archove - @yield('title', 'Dashboard')</title>
   <meta
     content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     name="viewport" />
@@ -55,7 +55,7 @@
               src="{{asset('assets/img/kaiadmin/logo-woka.png')}}"
               alt="navbar brand"
               class="navbar-brand"
-              height="20" />
+              height="40" />
             <span class="fw-bold text-white" style="font-size: 16px; padding-left:8px;">
               Woka Archive
             </span>
@@ -77,24 +77,12 @@
       <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
           <ul class="nav nav-secondary">
-            <li class="nav-item active">
-              <a
-                data-bs-toggle="collapse"
-                href="#dashboard"
-                class="collapsed"
-                aria-expanded="false">
-
-                @if(auth()->user()->role == 'admin')
+            @if(auth()->user()->role == 'admin')
             <li class="nav-item {{request()->routeIs('admin.dashboard.*') ? 'active' : ''}}">
               <a href="{{ route('admin.dashboard')}}">
                 <i class="fas fa-home"></i>
                 <p>Dashboard</p>
               </a>
-            </li>
-            <li class="nav-section">
-              <span class="sidebar-mini-icon">
-                <i class="fa fa-ellipsis-h"></i>
-              </span>
             </li>
             <li class="nav-item">
               <a href="{{ url('/admin/departemen') }}">
@@ -102,7 +90,7 @@
                 <p>Departemen</p>
               </a>
             </li>
-             <li class="nav-item {{request()->routeIs('admin.kategori.*') ? 'active' : ''}}">
+            <li class="nav-item {{request()->routeIs('admin.kategori.*') ? 'active' : ''}}">
               <a href="{{ route('admin.kategori.index')}}">
                 <i class="fas fa-folder-open fa-2x text-primary"></i>
                 <p>Kategori</p>
@@ -187,20 +175,6 @@
         <nav
           class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
           <div class="container-fluid">
-            <nav
-              class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <button type="submit" class="btn btn-search pe-1">
-                    <i class="fa fa-search search-icon"></i>
-                  </button>
-                </div>
-                <input
-                  type="text"
-                  placeholder="Search ..."
-                  class="form-control" />
-              </div>
-            </nav>
 
 
             <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
@@ -245,6 +219,7 @@
                     <span class="op-7">Hi,</span>
                     <span class="fw-bold">{{ Auth::user()->name }}</span>
                   </span>
+                  
                 </a>
                 <ul class="dropdown-menu dropdown-user animated fadeIn">
                   <div class="dropdown-user-scroll scrollbar-outer">
@@ -252,7 +227,7 @@
                       <div class="user-box">
                         <div class="avatar-lg">
                           <img
-                            src="{{asset('assets/img/profile.jpg')}}"
+                            src="{{asset('assets/img/logo-admin.jpg')}}"
                             alt="image profile"
                             class="avatar-img rounded" />
                         </div>
@@ -261,8 +236,9 @@
                             <span class="op-7">Hi,</span>
                             <span class="fw-bold">{{ Auth::user()->name }}</span>
                             <span class="fw-bold">{{ Auth::user()->email }}</span>
+                             <a href="{{ route('login')}}" class="btn btn-xs btn-secondary btn-sm">Logout</a>
                           </span>
-                          
+
 
                         </div>
                       </div>
@@ -305,167 +281,7 @@
       </footer>
     </div>
 
-    <!-- Custom template | don't include it in your project! -->
-    <div class="custom-template">
-      <div class="title">Settings</div>
-      <div class="custom-content">
-        <div class="switcher">
-          <div class="switch-block">
-            <h4>Logo Header</h4>
-            <div class="btnSwitch">
-              <button
-                type="button"
-                class="selected changeLogoHeaderColor"
-                data-color="dark"></button>
-              <button
-                type="button"
-                class="changeLogoHeaderColor"
-                data-color="blue"></button>
-              <button
-                type="button"
-                class="changeLogoHeaderColor"
-                data-color="purple"></button>
-              <button
-                type="button"
-                class="changeLogoHeaderColor"
-                data-color="light-blue"></button>
-              <button
-                type="button"
-                class="changeLogoHeaderColor"
-                data-color="green"></button>
-              <button
-                type="button"
-                class="changeLogoHeaderColor"
-                data-color="orange"></button>
-              <button
-                type="button"
-                class="changeLogoHeaderColor"
-                data-color="red"></button>
-              <button
-                type="button"
-                class="changeLogoHeaderColor"
-                data-color="white"></button>
-              <br />
-              <button
-                type="button"
-                class="changeLogoHeaderColor"
-                data-color="dark2"></button>
-              <button
-                type="button"
-                class="changeLogoHeaderColor"
-                data-color="blue2"></button>
-              <button
-                type="button"
-                class="changeLogoHeaderColor"
-                data-color="purple2"></button>
-              <button
-                type="button"
-                class="changeLogoHeaderColor"
-                data-color="light-blue2"></button>
-              <button
-                type="button"
-                class="changeLogoHeaderColor"
-                data-color="green2"></button>
-              <button
-                type="button"
-                class="changeLogoHeaderColor"
-                data-color="orange2"></button>
-              <button
-                type="button"
-                class="changeLogoHeaderColor"
-                data-color="red2"></button>
-            </div>
-          </div>
-          <div class="switch-block">
-            <h4>Navbar Header</h4>
-            <div class="btnSwitch">
-              <button
-                type="button"
-                class="changeTopBarColor"
-                data-color="dark"></button>
-              <button
-                type="button"
-                class="changeTopBarColor"
-                data-color="blue"></button>
-              <button
-                type="button"
-                class="changeTopBarColor"
-                data-color="purple"></button>
-              <button
-                type="button"
-                class="changeTopBarColor"
-                data-color="light-blue"></button>
-              <button
-                type="button"
-                class="changeTopBarColor"
-                data-color="green"></button>
-              <button
-                type="button"
-                class="changeTopBarColor"
-                data-color="orange"></button>
-              <button
-                type="button"
-                class="changeTopBarColor"
-                data-color="red"></button>
-              <button
-                type="button"
-                class="selected changeTopBarColor"
-                data-color="white"></button>
-              <br />
-              <button
-                type="button"
-                class="changeTopBarColor"
-                data-color="dark2"></button>
-              <button
-                type="button"
-                class="changeTopBarColor"
-                data-color="blue2"></button>
-              <button
-                type="button"
-                class="changeTopBarColor"
-                data-color="purple2"></button>
-              <button
-                type="button"
-                class="changeTopBarColor"
-                data-color="light-blue2"></button>
-              <button
-                type="button"
-                class="changeTopBarColor"
-                data-color="green2"></button>
-              <button
-                type="button"
-                class="changeTopBarColor"
-                data-color="orange2"></button>
-              <button
-                type="button"
-                class="changeTopBarColor"
-                data-color="red2"></button>
-            </div>
-          </div>
-          <div class="switch-block">
-            <h4>Sidebar</h4>
-            <div class="btnSwitch">
-              <button
-                type="button"
-                class="changeSideBarColor"
-                data-color="white"></button>
-              <button
-                type="button"
-                class="selected changeSideBarColor"
-                data-color="dark"></button>
-              <button
-                type="button"
-                class="changeSideBarColor"
-                data-color="dark2"></button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="custom-toggle">
-        <i class="icon-settings"></i>
-      </div>
-    </div>
-    <!-- End Custom template -->
+   
   </div>
   <!--   Core JS Files   -->
   <script src="{{ asset('assets/js/core/jquery-3.7.1.min.js') }}"></script>
@@ -529,6 +345,63 @@
       lineWidth: "2",
       lineColor: "#ffa534",
       fillColor: "rgba(255, 165, 52, .14)",
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      $("#basic-datatables").DataTable({});
+
+      $("#multi-filter-slect").DataTable({
+        pegeLength: 5,
+        initcomplate: function() {
+          this.api()
+            .columns()
+            .every(function() {
+              var column = this;
+              var select = $(
+                  '<slect class="form-select"><option value>=""></option></select>'
+                )
+                .appendTo($(columnn.footer()).empty())
+                .on("change", function() {
+                  var val = $.fn.DataTable.util.escapeRegex($(this).val());
+
+                  column
+                    .search(val ? "^" + val + "$" : "", true, false)
+                    .draw();
+
+                });
+              column
+                .data()
+                .unique()
+                .sort()
+                .each(function(d, j) {
+                  select.eppend(
+                    '<option value="' + d + '">' + d + "</option>"
+                  );
+                });
+            });
+        },
+      });
+
+      $("#add-row").DataTable({
+        pegeLength: 5,
+      });
+
+      var action =
+
+        '<div> div class="form button-actiont"> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg"data-original-title="edit task">'
+
+      $("#addRowButton").click(function() {
+        $("#add-row")
+          .dataTable()
+          .fnAddData([
+            $("#addName").val(),
+            $("#addposition").val(),
+            $("#addOffice").val(),
+            action,
+          ]);
+        $("#addRowModal").modal("hide");
+      });
     });
   </script>
 </body>
