@@ -3,7 +3,7 @@
 
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>@yield('title', 'Dashboard')</title>
+  <title>Woka Archove - @yield('title', 'Dashboard')</title>
   <meta
     content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     name="viewport" />
@@ -83,11 +83,6 @@
                 <i class="fas fa-home"></i>
                 <p>Dashboard</p>
               </a>
-            </li>
-            <li class="nav-section">
-              <span class="sidebar-mini-icon">
-                <i class="fa fa-ellipsis-h"></i>
-              </span>
             </li>
             <li class="nav-item">
               <a href="{{ url('/admin/departemen') }}">
