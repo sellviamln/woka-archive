@@ -110,6 +110,116 @@ td {
    -webkit-font-smoothing: antialiased;
    font-family: 'Public Sans', sans-serif
 }
+/* SIDEBAR AURORA */
+.sidebar-aurora {
+    width: 260px;
+    height: 100vh;
+    background: #0f172a;
+    border-radius: 25px;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* AURORA */
+.sidebar-aurora::before,
+.sidebar-aurora::after {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    filter: blur(80px);
+    opacity: 0.6;
+}
+
+.sidebar-aurora::before {
+    top: -40px;
+    left: -60px;
+    background: linear-gradient(140deg, #24c6dc, #514a9d);
+}
+
+.sidebar-aurora::after {
+    bottom: -40px;
+    right: -60px;
+    background: linear-gradient(140deg, #6a11cb, #2575fc);
+}
+
+/* LOGO */
+.logo-wrapper {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 3;
+}
+
+.sidebar-logo {
+    width: 70px;
+    height: auto;
+    margin-bottom: 8px;
+}
+
+.sidebar-title {
+    font-size: 20px;
+    color: white;
+    font-weight: 700;
+}
+
+/* NAVIGATION */
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 3;
+}
+
+.nav-item {
+    display: block;
+    color: white;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: 0.25s;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ICON PUTIH */
+.nav-item i {
+    color: white;
+    width: 20px;
+    margin-right: 10px;
+}
+
+/* LOGOUT BUTTON PALING BAWAH */
+.logout-section {
+    margin-top: auto;
+    position: relative;
+    z-index: 3;
+}
+
+.btn-logout-aurora {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 14px;
+    border-radius: 12px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ff0844, #ff416c);
+    transition: 0.25s;
+}
+
+.btn-logout-aurora:hover {
+    opacity: 0.85;
+}
+
 
 body,
 html {
@@ -958,7 +1068,7 @@ body {
    color: #575962;
    padding: 6px 25px;
    width: 100%;
-   font-size: 1rem;
+   font-size: 20;
    font-weight: 400;
    position: relative;
    margin-bottom: 3px;
@@ -1022,7 +1132,7 @@ body {
    margin-bottom: 0;
    margin-right: 5px;
    white-space: nowrap;
-   font-weight: 600
+   /* font-weight: 600 */
 }
 
 .sidebar .nav>.nav-item a .caret,
@@ -2250,8 +2360,16 @@ body[data-background-color=dark] .border-top {
 }
 
 .sidebar[data-background-color=dark] {
-   background: #1a2035 !important
+    background: linear-gradient(
+        135deg,
+      #00cfff 0%,      /* biru gelap seperti body */
+      #00335c 30%,     /* biru laut sedang */
+      #001f2d 70%      /* cyan terang aurora */
+      
+    ) !important;
 }
+
+
 
 .sidebar[data-background-color=dark] .user {
    border-color: rgba(181, 181, 181, .1) !important
@@ -5196,9 +5314,20 @@ label.error {
 }
 
 .navbar-header .container-fluid {
-   min-height: inherit;
-   padding: 0 !important
+    min-height: inherit;
+    padding: 0 !important;
+
+    /* Gradasi biru laut ala aurora */
+    background: linear-gradient(
+        135deg,
+        #001f2d 0%,    /* biru gelap seperti body */
+        #00335c 50%,   /* biru laut sedang */
+        #00cfff 100%   /* cyan terang aurora */
+    );
+
+    color: #ffffff;   /* teks putih agar kontras */
 }
+
 
 .navbar-header .dropdown-toggle::after {
    margin-left: 0
