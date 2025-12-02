@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+<head> 
+    
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Woka Archove - @yield('title', 'Dashboard')</title>
   <meta
@@ -41,6 +41,8 @@
 
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+  
+
 </head>
 
 <body>
@@ -80,13 +82,13 @@
             @if(auth()->user()->role == 'admin')
             <li class="nav-item {{request()->routeIs('admin.dashboard.*') ? 'active' : ''}}">
               <a href="{{ route('admin.dashboard')}}">
-                <i class="fas fa-home"></i>
+                <i class="fas fa-home  fa-2x "></i>
                 <p>Dashboard</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ url('/admin/departemen') }}">
-                <i class="fas fa-th-list"></i>
+                <i class="fas fa-th-list  fa-2x text-primary"></i>
                 <p>Departemen</p>
               </a>
             </li>
@@ -106,6 +108,12 @@
               <a href="{{ route('admin.dokumen.index')}}">
                 <i class="fas fa-folder fa-2x text-primary"></i>
                 <p>Dokumen</p>
+              </a>
+            </li>
+            <li class="nav-item {{request()->routeIs('login.*') ? 'active' : ''}}">
+              <a href="{{ route('login')}}">
+                <i class="far fa-share-square fa-2x text-danger"></i>
+                <p>Logout</p>
               </a>
             </li>
             @endif
@@ -134,6 +142,13 @@
               <a href="{{route('staff.profile')}}">
                 <i class="fas fa-users fa-2x text-warning"></i>
                 <p>Profile</p>
+              </a>
+            </li>
+
+            <li class="nav-item {{request()->routeIs('login.*') ? 'active' : ''}}">
+              <a href="{{ route('login')}}">
+                <i class="far fa-share-square fa-2x text-danger"></i>
+                <p>Logout</p>
               </a>
             </li>
 
