@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-
-<head>
+<head> 
+    
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Woka Archive - @yield('title', 'Dashboard')</title>
   <meta
@@ -97,13 +95,13 @@ body {
             @if(auth()->user()->role == 'admin')
             <li class="nav-item {{request()->routeIs('admin.dashboard.*') ? 'active' : ''}}">
               <a href="{{ route('admin.dashboard')}}">
-                <i class="fas fa-home"></i>
+                <i class="fas fa-home  fa-2x "></i>
                 <p>Dashboard</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ url('/admin/departemen') }}">
-                <i class="fas fa-th-list"></i>
+                <i class="fas fa-th-list  fa-2x text-primary"></i>
                 <p>Departemen</p>
               </a>
             </li>
@@ -123,6 +121,12 @@ body {
               <a href="{{ route('admin.dokumen.index')}}">
                 <i class="fas fa-folder fa-2x text-primary"></i>
                 <p>Dokumen</p>
+              </a>
+            </li>
+            <li class="nav-item {{request()->routeIs('login.*') ? 'active' : ''}}">
+              <a href="{{ route('login')}}">
+                <i class="far fa-share-square fa-2x text-danger"></i>
+                <p>Logout</p>
               </a>
             </li>
             @endif
@@ -162,6 +166,13 @@ body {
 
 
            
+
+            <li class="nav-item {{request()->routeIs('login.*') ? 'active' : ''}}">
+              <a href="{{ route('login')}}">
+                <i class="far fa-share-square fa-2x text-danger"></i>
+                <p>Logout</p>
+              </a>
+            </li>
 
             @endif
           </ul>
