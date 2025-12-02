@@ -41,4 +41,19 @@ Route::prefix('staff')->name('staff.')->middleware(['auth', 'role:staff'])->grou
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [StaffController::class, 'profile'])->name('profile');
     Route::put('/profile/update', [StaffController::class, 'profileUpdate'])->name('profile.update');
+
+    //kategori staff
+    Route::get('/kategori', [KategoriController::class, 'kategoriStaff'])->name('kategori');
+
+
+
+    //kelola dokumen atau kategori
+    Route::get('/dokumen', [KategoriController::class, 'kelolaDokumen'])->name('dokumen');
+    Route::get('/dokumen', [DokumenController::class, 'Dokumen'])->name('dokumen.index');
+
+    Route::get('/dokumen/{id}', [DokumenController::class, 'show'])->name('dokumen.show');
+
+    Route::post('/dokumen/upload/{kategori}', [DokumenController::class, 'upload'])->name('dokumen.upload');
+    
+
 });

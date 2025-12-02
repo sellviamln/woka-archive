@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Woka Archove - @yield('title', 'Dashboard')</title>
+  <title>Woka Archive - @yield('title', 'Dashboard')</title>
   <meta
     content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     name="viewport" />
   <link
     rel="icon"
-    href="{{asset('assets/img/kaiadmin/logo-woka2.png')}}"
+    href="{{asset('assets/img/kaiadmin/logo-putih.png')}}"
     type="image/x-icon" />
 
   <!-- Fonts and icons -->
@@ -41,6 +43,22 @@
 
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+  <style>
+        /* Tulisan & icon sidebar */
+    .sidebar .menu-item a,
+    .sidebar .menu-item,
+    .sidebar i,
+    .sidebar svg {
+        color: white !important;
+        fill: white !important;
+    }
+body {
+        font-family: "Poppins", sans-serif !important;
+    }
+  
+  </style>
+
+  []
 </head>
 
 <body>
@@ -50,9 +68,9 @@
       <div class="sidebar-logo">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
-          <a href="{{ route('admin.dashboard') }}" class="logo">
+
             <img
-              src="{{asset('assets/img/kaiadmin/logo-woka2-removebg-preview.png')}}"
+              src="{{asset('assets/img/kaiadmin/logo-putih.png')}}"
               alt="navbar brand"
               class="navbar-brand mt-4"
               height="170"
@@ -119,22 +137,31 @@
               </a>
             </li>
 
-            <li
-              class="nav-item ">
-              <a href="">
-                <i class="fas fa-folder fa-2x text-primary"></i>
-                <p>Kelola Dokumen</p>
-              </a>
-            </li>
-
-
-            <li
+             <li
               class="nav-item {{request()->routeIs('staff.profile.*') ? 'active' : ''}}">
               <a href="{{route('staff.profile')}}">
                 <i class="fas fa-users fa-2x text-warning"></i>
                 <p>Profile</p>
               </a>
             </li>
+
+            <li class="nav-item {{request()->routeIs('staff.kategori.*') ? 'active' : ''}}">
+              <a href="{{ route('staff.kategori')}}">
+                <i class="fas fa-folder-open fa-2x text-primary"></i>
+                <p>Kategori</p>
+              </a>
+            </li>
+
+            <li
+              class="nav-item {{request()->routeIs('staff.dokumen') ? 'active' : ''}}">
+              <a href="{{ route('staff.dokumen.index')}}">
+                <i class="fas fa-folder fa-2x text-primary"></i>
+                <p>Kelola Dokumen</p>
+              </a>
+            </li>
+
+
+           
 
             @endif
           </ul>
@@ -199,9 +226,6 @@
                   </form>
                 </ul>
               </li>
-
-
-
               <li class="nav-item topbar-user dropdown hidden-caret">
                 <a
                   class="dropdown-toggle profile-pic"

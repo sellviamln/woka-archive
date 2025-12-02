@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokumen;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -69,4 +70,16 @@ class KategoriController extends Controller
         return redirect()->route('admin.kategori.index')
                         ->with('success', 'Kategori berhasil dihapus.');
     }
+
+     public function kategoriStaff()
+    {
+       $kategori = Kategori::all();
+        return view('staff.kategori.index', compact('kategori'));
+    }
+
+
+
 }
+
+
+
