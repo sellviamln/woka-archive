@@ -19,7 +19,7 @@ Route::post('/login', [AuthController::class, 'login_proses'])->name('login.pros
 
 
 // Hanya untuk admin
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin',])->group(function(){
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin',])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('departemen', DepartemenController::class);
     Route::resource('kategori', KategoriController::class);
@@ -32,8 +32,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin',])->gro
     Route::patch('/staff/{id}/akses/read', [StaffController::class, 'setRead'])->name('staff.akses.read');
     Route::patch('/staff/{id}/akses/write', [StaffController::class, 'setWrite'])->name('staff.akses.write');
 
-    Route::resource('dokumen', DokumenController::class);
-
+    Route::resource('dokumen', DokumenController::class)->parameters(['dokumen' => 'dokumen']);
 });
 
 
