@@ -40,15 +40,10 @@
                         <td>{{ $dokumen->tanggal_upload }}</td>
                         <td>{{ $dokumen->tanggal_kadaluarsa}}</td>
                         <td>
-
                             <div class="d-flex flex-wrap gap-2">
-                                {{-- TOMBOL EDIT --}}
                                 <a href="{{ route('admin.dokumen.edit', $dokumen->id) }}" class="btn btn-warning btn-sm" title="Edit Dokumen">
                                     Edit
                                 </a>
-
-                                {{-- TOMBOL HAPUS (DELETE FORM) --}}
-                                {{-- Tambahkan class 'd-inline' dan 'm-0' pada form agar sejajar dengan tombol lain --}}
                                 <form action="{{ route('admin.dokumen.destroy', $dokumen->id) }}" method="POST" class="d-inline m-0"
                                     onsubmit="return confirm('Apakah Anda yakin ingin menghapus dokumen: {{ $dokumen->judul }}? Aksi ini tidak dapat dibatalkan.')">
                                     @csrf
@@ -57,8 +52,6 @@
                                         Hapus
                                     </button>
                                 </form>
-
-                                {{-- TOMBOL DETAIL (MODAL TRIGGER) --}}
                                 <button type="button" class="btn btn-info btn-sm" title="Lihat Detail Dokumen"
                                     data-bs-toggle="modal"
                                     data-bs-target="#detailDokumen{{ $dokumen->id }}">
