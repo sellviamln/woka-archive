@@ -9,7 +9,7 @@
     name="viewport" />
   <link
     rel="icon"
-    href="{{asset('assets/img/kaiadmin/logo-woka.png')}}"
+    href="{{asset('assets/img/kaiadmin/logo-woka2.png')}}"
     type="image/x-icon" />
 
   <!-- Fonts and icons -->
@@ -52,13 +52,12 @@
         <div class="logo-header" data-background-color="dark">
           <a href="{{ route('admin.dashboard') }}" class="logo">
             <img
-              src="{{asset('assets/img/kaiadmin/logo-woka.png')}}"
+              src="{{asset('assets/img/kaiadmin/logo-woka2-removebg-preview.png')}}"
               alt="navbar brand"
-              class="navbar-brand"
-              height="40" />
-            <span class="fw-bold text-white" style="font-size: 16px; padding-left:8px;">
-              Woka Archive
-            </span>
+              class="navbar-brand mt-4"
+              height="170"
+              width="170" />
+           
           </a>
           <div class="nav-toggle">
             <button class="btn btn-toggle toggle-sidebar">
