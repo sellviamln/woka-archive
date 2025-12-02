@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+<head> 
+    
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Woka Archove - @yield('title', 'Dashboard')</title>
   <meta
@@ -9,7 +9,7 @@
     name="viewport" />
   <link
     rel="icon"
-    href="{{asset('assets/img/kaiadmin/logo-woka.png')}}"
+    href="{{asset('assets/img/kaiadmin/logo-woka2.png')}}"
     type="image/x-icon" />
 
   <!-- Fonts and icons -->
@@ -41,6 +41,8 @@
 
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+  
+
 </head>
 
 <body>
@@ -52,13 +54,12 @@
         <div class="logo-header" data-background-color="dark">
           <a href="{{ route('admin.dashboard') }}" class="logo">
             <img
-              src="{{asset('assets/img/kaiadmin/logo-woka.png')}}"
+              src="{{asset('assets/img/kaiadmin/logo-woka2-removebg-preview.png')}}"
               alt="navbar brand"
-              class="navbar-brand"
-              height="40" />
-            <span class="fw-bold text-white" style="font-size: 16px; padding-left:8px;">
-              Woka Archive
-            </span>
+              class="navbar-brand mt-4"
+              height="170"
+              width="170" />
+           
           </a>
           <div class="nav-toggle">
             <button class="btn btn-toggle toggle-sidebar">
@@ -80,13 +81,13 @@
             @if(auth()->user()->role == 'admin')
             <li class="nav-item {{request()->routeIs('admin.dashboard.*') ? 'active' : ''}}">
               <a href="{{ route('admin.dashboard')}}">
-                <i class="fas fa-home"></i>
+                <i class="fas fa-home  fa-2x "></i>
                 <p>Dashboard</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ url('/admin/departemen') }}">
-                <i class="fas fa-th-list"></i>
+                <i class="fas fa-th-list  fa-2x text-primary"></i>
                 <p>Departemen</p>
               </a>
             </li>
@@ -106,6 +107,12 @@
               <a href="{{ route('admin.dokumen.index')}}">
                 <i class="fas fa-folder fa-2x text-primary"></i>
                 <p>Dokumen</p>
+              </a>
+            </li>
+            <li class="nav-item {{request()->routeIs('login.*') ? 'active' : ''}}">
+              <a href="{{ route('login')}}">
+                <i class="far fa-share-square fa-2x text-danger"></i>
+                <p>Logout</p>
               </a>
             </li>
             @endif
@@ -134,6 +141,13 @@
               <a href="{{route('staff.profile')}}">
                 <i class="fas fa-users fa-2x text-warning"></i>
                 <p>Profile</p>
+              </a>
+            </li>
+
+            <li class="nav-item {{request()->routeIs('login.*') ? 'active' : ''}}">
+              <a href="{{ route('login')}}">
+                <i class="far fa-share-square fa-2x text-danger"></i>
+                <p>Logout</p>
               </a>
             </li>
 
