@@ -11,7 +11,6 @@
             <form action="{{ route('admin.dokumen.update', $dokumen->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
