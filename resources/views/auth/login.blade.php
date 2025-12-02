@@ -26,7 +26,7 @@
 
     /* Aurora Layer */
     .aurora {
-       z-index: -1;
+      
       position: absolute;
       width: 120%;
       height: 120%;

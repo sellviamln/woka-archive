@@ -8,6 +8,7 @@ use App\Http\Controllers\AktivitasController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StaffController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use NunoMaduro\Collision\Adapters\Phpunit\State;
 
@@ -16,6 +17,13 @@ use NunoMaduro\Collision\Adapters\Phpunit\State;
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'login_proses'])->name('login.proses');
+Route::post('/logout', function () {
+    Auth::logout();
+    session()->invalidate();
+    session()->regenerateToken();
+
+    return redirect()->route('login'); // diarahkan ke halaman login
+})->name('logout');
 
 
 // Hanya untuk admin
@@ -24,6 +32,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin',])->gro
     Route::resource('departemen', DepartemenController::class);
     Route::resource('kategori', KategoriController::class);
     Route::resource('staff', StaffController::class);
+
 
     Route::patch('/user/{id}/status/active', [StaffController::class, 'setActive'])->name('user.status.active');
     Route::patch('/user/{id}/status/inactive', [StaffController::class, 'setInactive'])->name('user.status.inactive');
