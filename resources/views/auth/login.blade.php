@@ -26,7 +26,7 @@
 
     /* Aurora Layer */
     .aurora {
-       z-index: -1;
+      
       position: absolute;
       width: 120%;
       height: 120%;
@@ -148,10 +148,10 @@
         Sign In
       </button>
     </form>
-    <div class="aurora"></div>
 
 
   </div>
+  <div class="aurora"></div>
 </body>
 
 </html>

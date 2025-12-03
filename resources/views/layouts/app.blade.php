@@ -3,13 +3,13 @@
 
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Woka Archove - @yield('title', 'Dashboard')</title>
+  <title>Woka Archive - @yield('title', 'Dashboard')</title>
   <meta
     content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     name="viewport" />
   <link
     rel="icon"
-    href="{{asset('assets/img/kaiadmin/logo-woka.png')}}"
+    href="{{asset('assets/img/kaiadmin/logo-putih.png')}}"
     type="image/x-icon" />
 
   <!-- Fonts and icons -->
@@ -41,6 +41,61 @@
 
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+
+  <style>
+    .sidebar {
+      background: rgba(255, 255, 255, 0.10) !important;
+      backdrop-filter: blur(18px);
+      border-radius: 20px !important;
+      margin: 10px;
+      height: calc(100vh - 20px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.20);
+    }
+
+    /* TEXT & ICON PUTIH */
+    .sidebar .nav>li>a,
+    .sidebar .nav .nav-icon,
+    .sidebar .nav .sub-item {
+      color: white !important;
+    }
+
+    .btn-logout-aurora {
+      background: linear-gradient(135deg,
+          rgba(255, 60, 60, 0.9),
+          rgba(255, 100, 140, 0.9),
+          rgba(255, 102, 60, 0.9));
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      /* LEBIH KECIL */
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 10px rgba(255, 70, 70, 0.35);
+      backdrop-filter: blur(6px);
+    }
+
+    .btn-logout-aurora:hover {
+      background: linear-gradient(135deg,
+          rgba(255, 60, 60, 0.9),
+          rgba(255, 100, 140, 0.9),
+          rgba(255, 102, 60, 0.9));
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(255, 60, 100, 0.55);
+    }
+
+    /* AGAR POSISI TETAP DI PALING BAWAH SIDEBAR */
+    .sidebar-footer {
+      position: absolute;
+      bottom: 20px;
+      width: 85%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    
+  </style>
 </head>
 
 <body>
@@ -49,10 +104,10 @@
     <div class="sidebar" data-background-color="dark">
       <div class="sidebar-logo">
         <!-- Logo Header -->
-        <div class="logo-header" data-background-color="dark">
+        <div class="logo-header">
           <a href="{{ route('admin.dashboard') }}" class="logo">
             <img
-              src="{{asset('assets/img/kaiadmin/logo-woka.png')}}"
+              src="{{asset('assets/img/kaiadmin/logo-putih.png')}}"
               alt="navbar brand"
               class="navbar-brand"
               height="40" />
@@ -108,6 +163,15 @@
                 <p>Dokumen</p>
               </a>
             </li>
+            
+            
+              <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button class="btn-logout-aurora w-100">
+                  Logout
+                </button>
+              </form>
+            
             @endif
 
             @if(auth()->user()->role == 'staff')
@@ -120,22 +184,42 @@
               </a>
             </li>
 
-            <li
-              class="nav-item ">
-              <a href="">
-                <i class="fas fa-folder fa-2x text-primary"></i>
-                <p>Kelola Dokumen</p>
-              </a>
-            </li>
-
-
-            <li
+             <li
               class="nav-item {{request()->routeIs('staff.profile.*') ? 'active' : ''}}">
               <a href="{{route('staff.profile')}}">
                 <i class="fas fa-users fa-2x text-warning"></i>
                 <p>Profile</p>
               </a>
             </li>
+
+            <li class="nav-item {{request()->routeIs('staff.kategori.*') ? 'active' : ''}}">
+              <a href="{{ route('staff.kategori')}}">
+                <i class="fas fa-folder-open fa-2x text-primary"></i>
+                <p>Kategori</p>
+              </a>
+            </li>
+
+            <li
+              class="nav-item {{request()->routeIs('staff.dokumen') ? 'active' : ''}}">
+              <a href="{{ route('staff.dokumen.index')}}">
+                <i class="fas fa-folder fa-2x text-primary"></i>
+                <p>Kelola Dokumen</p>
+              </a>
+            </li>
+
+
+           
+
+           
+            
+              <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button class="btn-logout-aurora w-100">
+                  Logout
+                </button>
+              </form>
+            
+
 
             @endif
           </ul>
@@ -200,9 +284,6 @@
                   </form>
                 </ul>
               </li>
-
-
-
               <li class="nav-item topbar-user dropdown hidden-caret">
                 <a
                   class="dropdown-toggle profile-pic"
@@ -211,7 +292,7 @@
                   aria-expanded="false">
                   <div class="avatar-sm">
                     <img
-                      src="{{ asset('assets/img/logo-admin.jpg') }}"
+                     src="{{ asset('storage/' . Auth::user()->staff->foto) }}"
                       alt="..."
                       class="avatar-img rounded-circle" />
                   </div>
@@ -219,7 +300,7 @@
                     <span class="op-7">Hi,</span>
                     <span class="fw-bold">{{ Auth::user()->name }}</span>
                   </span>
-                  
+
                 </a>
                 <ul class="dropdown-menu dropdown-user animated fadeIn">
                   <div class="dropdown-user-scroll scrollbar-outer">
@@ -227,7 +308,7 @@
                       <div class="user-box">
                         <div class="avatar-lg">
                           <img
-                            src="{{asset('assets/img/logo-admin.jpg')}}"
+                            src="{{ asset('storage/' . Auth::user()->staff->foto) }}"
                             alt="image profile"
                             class="avatar-img rounded" />
                         </div>
@@ -236,7 +317,7 @@
                             <span class="op-7">Hi,</span>
                             <span class="fw-bold">{{ Auth::user()->name }}</span>
                             <span class="fw-bold">{{ Auth::user()->email }}</span>
-                             <a href="{{ route('login')}}" class="btn btn-xs btn-secondary btn-sm">Logout</a>
+                            <a href="{{ route('login')}}" class="btn btn-xs btn-secondary btn-sm">Logout</a>
                           </span>
 
 
@@ -281,7 +362,7 @@
       </footer>
     </div>
 
-   
+
   </div>
   <!--   Core JS Files   -->
   <script src="{{ asset('assets/js/core/jquery-3.7.1.min.js') }}"></script>
