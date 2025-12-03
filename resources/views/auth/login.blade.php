@@ -148,10 +148,10 @@
         Sign In
       </button>
     </form>
-    <div class="aurora"></div>
 
 
   </div>
+  <div class="aurora"></div>
 </body>
 
 </html>
