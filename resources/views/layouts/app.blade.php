@@ -294,7 +294,10 @@
                   aria-expanded="false">
                   <div class="avatar-sm">
                     <img
-                     src="{{ asset('storage/' . Auth::user()->staff->foto) }}"
+                     src="{{ Auth::user()->role === 'staff'
+        ? asset('storage/' . (optional(Auth::user()->staff)->foto ?? 'default.png'))
+        : asset('storage/default.png')
+    }}"
                       alt="..."
                       class="avatar-img rounded-circle" />
                   </div>
@@ -310,7 +313,10 @@
                       <div class="user-box">
                         <div class="avatar-lg">
                           <img
-                            src="{{ asset('storage/' . Auth::user()->staff->foto) }}"
+                            src="{{ Auth::user()->role === 'staff'
+        ? asset('storage/' . (optional(Auth::user()->staff)->foto ?? 'default.png'))
+        : asset('storage/default.png')
+    }}"
                             alt="image profile"
                             class="avatar-img rounded" />
                         </div>
@@ -318,13 +324,8 @@
                           <span class="profile-username">
                             <span class="op-7">Hi,</span>
                             <span class="fw-bold">{{ Auth::user()->name }}</span>
-<<<<<<< HEAD
                             <span class="fw-bold" style="margin-left: 8px;">{{ Auth::user()->email }}</span>
                              <a href="{{ route('login')}}" class="btn btn-xs btn-secondary btn-sm" style="margin-left: 8px;">Logout</a>
-=======
-                            <span class="fw-bold">{{ Auth::user()->email }}</span>
-                            <a href="{{ route('login')}}" class="btn btn-xs btn-secondary btn-sm">Logout</a>
->>>>>>> 188921f3d38dfe75f3b4c9dfb6bf4372e93f3bad
                           </span>
 
 
