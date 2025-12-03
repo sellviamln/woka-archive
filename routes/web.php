@@ -8,6 +8,7 @@ use App\Http\Controllers\AktivitasController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StaffController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use NunoMaduro\Collision\Adapters\Phpunit\State;
 
@@ -16,14 +17,22 @@ use NunoMaduro\Collision\Adapters\Phpunit\State;
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'login_proses'])->name('login.proses');
+Route::post('/logout', function () {
+    Auth::logout();
+    session()->invalidate();
+    session()->regenerateToken();
+
+    return redirect()->route('login'); // diarahkan ke halaman login
+})->name('logout');
 
 
 // Hanya untuk admin
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin',])->group(function(){
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin',])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('departemen', DepartemenController::class);
     Route::resource('kategori', KategoriController::class);
     Route::resource('staff', StaffController::class);
+
 
     Route::patch('/user/{id}/status/active', [StaffController::class, 'setActive'])->name('user.status.active');
     Route::patch('/user/{id}/status/inactive', [StaffController::class, 'setInactive'])->name('user.status.inactive');
@@ -32,8 +41,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin',])->gro
     Route::patch('/staff/{id}/akses/read', [StaffController::class, 'setRead'])->name('staff.akses.read');
     Route::patch('/staff/{id}/akses/write', [StaffController::class, 'setWrite'])->name('staff.akses.write');
 
-    Route::resource('dokumen', DokumenController::class);
-
+    Route::resource('dokumen', DokumenController::class)->parameters(['dokumen' => 'dokumen']);
 });
 
 
@@ -42,4 +50,19 @@ Route::prefix('staff')->name('staff.')->middleware(['auth', 'role:staff'])->grou
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [StaffController::class, 'profile'])->name('profile');
     Route::put('/profile/update', [StaffController::class, 'profileUpdate'])->name('profile.update');
+
+    //kategori staff
+    Route::get('/kategori', [KategoriController::class, 'kategoriStaff'])->name('kategori');
+
+
+
+    //kelola dokumen atau kategori
+    Route::get('/dokumen', [KategoriController::class, 'kelolaDokumen'])->name('dokumen');
+    Route::get('/dokumen', [DokumenController::class, 'Dokumen'])->name('dokumen.index');
+
+    Route::get('/dokumen/{id}', [DokumenController::class, 'show'])->name('dokumen.show');
+
+    Route::post('/dokumen/upload/{kategori}', [DokumenController::class, 'upload'])->name('dokumen.upload');
+    
+
 });
