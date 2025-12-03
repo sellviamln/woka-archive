@@ -2,8 +2,6 @@
 <html lang="en">
 
 <head>
-
-
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Woka Archive - @yield('title', 'Dashboard')</title>
   <meta
@@ -137,13 +135,13 @@
             @if(auth()->user()->role == 'admin')
             <li class="nav-item {{request()->routeIs('admin.dashboard.*') ? 'active' : ''}}">
               <a href="{{ route('admin.dashboard')}}">
-                <i class="fas fa-home  fa-2x "></i>
+                <i class="fas fa-home"></i>
                 <p>Dashboard</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ url('/admin/departemen') }}">
-                <i class="fas fa-th-list  fa-2x text-primary"></i>
+                <i class="fas fa-th-list"></i>
                 <p>Departemen</p>
               </a>
             </li>
@@ -324,8 +322,8 @@
                           <span class="profile-username">
                             <span class="op-7">Hi,</span>
                             <span class="fw-bold">{{ Auth::user()->name }}</span>
-                            <span class="fw-bold" style="margin-left: 8px;">{{ Auth::user()->email }}</span>
-                             <a href="{{ route('login')}}" class="btn btn-xs btn-secondary btn-sm" style="margin-left: 8px;">Logout</a>
+                            <span class="fw-bold">{{ Auth::user()->email }}</span>
+                            <a href="{{ route('login')}}" class="btn btn-xs btn-secondary btn-sm">Logout</a>
                           </span>
 
 
