@@ -137,7 +137,7 @@
         <div class="sidebar-content">
           <ul class="nav nav-secondary">
             @if(auth()->user()->role == 'admin')
-            <li class="nav-item {{request()->routeIs('admin.dashboard.*') ? 'active' : ''}}">
+            <li class="nav-item {{request()->routeIs('admin.dashboard.') ? 'active' : ''}}">
               <a href="{{ route('admin.dashboard')}}">
                 <i class="fas fa-home"></i>
                 <p>Dashboard</p>
@@ -181,6 +181,7 @@
                 <p>Dashboard</p>
               </a>
             </li>
+            
 
             <li
               class="nav-item {{request()->routeIs('staff.profile.*') ? 'active' : ''}}">
