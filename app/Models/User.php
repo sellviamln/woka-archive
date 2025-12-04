@@ -51,4 +51,16 @@ class User extends Authenticatable
     {
         return $this->hasOne(Staff::class, 'user_id');
     }
+
+    public function departemen()
+{
+    return $this->hasOneThrough(
+        Departemen::class,
+        Staff::class,
+        'user_id',        // foreign key di staff
+        'id',             // primary key di departemen
+        'id',             // primary key di users
+        'departemen_id'   // foreign key di staff
+    );
+}
 }
