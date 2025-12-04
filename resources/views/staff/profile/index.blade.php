@@ -134,7 +134,7 @@
                     <div class="shadow-sm rounded-4 p-4"
                         style="background-color: var(--bs-body-bg); color: var(--bs-body-color);">
                         <h6 class="fw-semibold mb-3 text-primary d-flex align-items-center">
-                            <i class="bi bi-info-circle me-2"></i> Informasi Pribadi
+                            <i class="bi bi-info-circle me-2"></i> Informasi Pribadi :
                         </h6>
 
                         <div class="row g-3">
