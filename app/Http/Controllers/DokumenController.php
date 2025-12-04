@@ -130,70 +130,70 @@ class DokumenController extends Controller
             ->with('success', 'Dokumen berhasil dihapus.');
     }
 
-     public function Dokumen()
+    public function Dokumen()
     {
-       $dokumen = Dokumen::with('kategori')->get();
-        return view('staff.dokumen.index', compact('dokumen'));
+        $kategori = Kategori::all();
+        return view('staff.dokumen.index', compact('kategori'));
     }
 
-    public function show($id)
-{
-    $kategori = Kategori::findOrFail($id);
-    $user = Auth::user(); // ambil user yang login
+    public function tampil($slug)
+    {
+        $kategori = Kategori::where('slug', $slug)->firstOrFail();
+        $user = Auth::user(); // ambil user yang login
 
-    // Ambil dokumen berdasarkan kategori dan departemen user
-    $dokumens = Dokumen::where('kategori_id', $id)
-        ->when($user->role !== 'admin', function($query) use ($user) {
-            // kalau bukan admin, batasi sesuai departemen
-            $query->where('departemen_id', $user->departemen_id);
-        })
-        ->latest()
-        ->get();
+        // Ambil dokumen berdasarkan kategori dan departemen user
+        $dokumens = Dokumen::where('kategori_id', $kategori->id)
+            ->when($user->role !== 'admin', function ($query) use ($user) {
+                // kalau bukan admin, batasi sesuai departemen
+                $query->where('departemen_id', $user->departemen_id);
+            })
+            ->latest()
+            ->get();
 
-    return view('staff.dokumen.show', compact('kategori', 'dokumens'));
-}
-public function upload(Request $request, $kategoriId)
-{
-$request->validate([
+        return view('staff.dokumen.tampil-dokumen', compact('kategori', 'dokumens'));
+    }
+
+
+    public function tambah($kategoriId)
+    {
+
+        $kategori = Kategori::findOrFail($kategoriId);
+        $departemen = Departemen::all();
+
+        return view('staff.dokumen.tambah', compact('kategori', 'departemen'));
+    }
+
+    public function upload(Request $request, $kategoriId)
+    {
+    
+
+        // kode lain…
+
+        $request->validate([
             'judul'              => 'required',
-            'departemen_id'      => 'required',
-            'kategori_id'        => 'required',
             'tanggal_upload'     => 'required|date',
             'tanggal_kadaluarsa' => 'required|date',
-            'status'             => 'required',
-            'tipe_file'          => 'required',
             'deskripsi'          => 'nullable',
             'dokumen'            => 'required|file|max:50000|mimes:docx,jpg,jpeg,png,pdf',
-            'tipe_file'  => 'required',
-            'deskripsi'   => 'nullable',
-            'dokumen' => 'required|file|max:50000|mimes:docx,jpg,jpeg,png,pdf',
-
-
+            'kategori_id'        => 'required',
         ]);
 
+        // Simpan file
         $filePath = $request->file('dokumen')->store('dokumen', 'public');
 
         Dokumen::create([
-            'no_dokumen'         => 'DOC-' . time(),
-            'departemen_id'      => $request->departemen_id,
-            'kategori_id'        => $request->kategori_id,
             'judul'              => $request->judul,
             'tanggal_upload'     => $request->tanggal_upload,
             'tanggal_kadaluarsa' => $request->tanggal_kadaluarsa,
-            'status'             => $request->status,
-            'tipe_file'          => $request->tipe_file,
             'deskripsi'          => $request->deskripsi,
             'dokumen'            => $filePath,
             'uploaded_by'        => Auth::id(),
-            'tipe_file'         => $request->tipe_file,
-            'deskripsi'         => $request->deskripsi,
-            'dokumen'           => $filePath,
-            'uploaded_by' => Auth::id(),
-
+            'kategori_id'        => $request->kategori_id,
+            'departemen_id'      => Auth::user()->staff->departemen_id,
+            'tipe_file'          => $request->file('dokumen')->getClientOriginalExtension(),
         ]);
 
         return redirect()->route('staff.dokumen.index')
             ->with('success', 'Dokumen berhasil ditambahkan.');
-
-}
+    }
 }
