@@ -15,10 +15,12 @@
             <a href="{{ route('staff.dokumen.show', $kat->id) }}" class="text-decoration-none text-dark">
                 <div class="card shadow-sm p-3 text-center">
 
-                    <img src="https://cdn-icons-png.flaticon.com/512/599/599534.png"
-                         width="60"
-                         class="mb-3"
-                         alt="folder">
+                    <img
+                        src="https://cdn-icons-png.flaticon.com/512/599/599534.png"
+                        srcset="https://cdn-icons-png.flaticon.com/512/599/599534.png 1x, https://cdn-icons-png.flaticon.com/1024/599/599534.png 2x"
+                        alt="folder"
+                        width="64">
+
 
                     <h6 class="fw-bold">{{ $kat->nama }}</h6>
                     <small class="text-muted d-block">
