@@ -45,13 +45,21 @@
   <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
 
   <style>
-    .sidebar {
-      background: rgba(255, 255, 255, 0.10) !important;
-      backdrop-filter: blur(18px);
-      border-radius: 20px !important;
-      margin: 10px;
-      height: calc(100vh - 20px) !important;
-      border: 1px solid rgba(255, 255, 255, 0.20);
+    p{
+      color: #fff;
+    }
+    .navbar,
+    .navbar * {
+      color: #ffffff !important;
+    }
+
+    .sidebar i,
+    .sidebar svg,
+    .sidebar .icon,
+    .sidebar .nav-icon {
+      color: #ffffff !important;
+      fill: #ffffff !important;
+      /* untuk SVG */
     }
 
     /* TEXT & ICON PUTIH */
@@ -59,6 +67,11 @@
     .sidebar .nav .nav-icon,
     .sidebar .nav .sub-item {
       color: white !important;
+    }
+
+    body,
+    body * {
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
 
     .btn-logout-aurora {
@@ -76,6 +89,7 @@
       transition: 0.3s ease;
       box-shadow: 0 4px 10px rgba(255, 70, 70, 0.35);
       backdrop-filter: blur(6px);
+      width: 200px;
     }
 
     .btn-logout-aurora:hover {
@@ -86,17 +100,6 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 14px rgba(255, 60, 100, 0.55);
     }
-
-    /* AGAR POSISI TETAP DI PALING BAWAH SIDEBAR */
-    .sidebar-footer {
-      position: absolute;
-      bottom: 20px;
-      width: 85%;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    
   </style>
 </head>
 
@@ -108,14 +111,13 @@
         <!-- Logo Header -->
         <div class="logo-header">
           <a href="{{ route('admin.dashboard') }}" class="logo">
-            <img
-              src="{{asset('assets/img/kaiadmin/logo-putih.png')}}"
-              alt="navbar brand"
-              class="navbar-brand"
-              height="40" />
-            <span class="fw-bold text-white" style="font-size: 16px; padding-left:8px;">
-              Woka Archive
-            </span>
+            <nav class="navbar navbar-expand-lg ">
+              <div class="container d-flex ">
+                <img src="{{asset('assets/img/kaiadmin/logo-putih.png')}}" alt="navbar brand" class="navbar mt-4" height="80">
+              </div>
+            </nav>
+
+
           </a>
           <div class="nav-toggle">
             <button class="btn btn-toggle toggle-sidebar">
@@ -166,14 +168,8 @@
               </a>
             </li>
             
-            
-              <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button class="btn-logout-aurora w-100">
-                  Logout
-                </button>
-              </form>
-            
+
+
             @endif
 
             @if(auth()->user()->role == 'staff')
@@ -186,7 +182,7 @@
               </a>
             </li>
 
-             <li
+            <li
               class="nav-item {{request()->routeIs('staff.profile.*') ? 'active' : ''}}">
               <a href="{{route('staff.profile')}}">
                 <i class="fas fa-users fa-2x text-warning"></i>
@@ -210,20 +206,15 @@
             </li>
 
 
-           
-
-           
-            
-              <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button class="btn-logout-aurora w-100">
-                  Logout
-                </button>
-              </form>
-            
-
-
             @endif
+            <form action="{{ route('logout') }}" method="POST">
+              @csrf
+              <div class="row justify-content-center">
+                <button class="btn-logout-aurora">
+                Logout
+              </button>
+              </div>
+            </form>
           </ul>
         </div>
       </div>
@@ -319,7 +310,7 @@
                             <span class="op-7">Hi,</span>
                             <span class="fw-bold">{{ Auth::user()->name }}</span>
                             <span class="fw-bold">{{ Auth::user()->email }}</span>
-                            <a href="{{ route('login')}}" class="btn btn-xs btn-secondary btn-sm">Logout</a>
+                           
                           </span>
 
 
@@ -336,7 +327,9 @@
       </div>
 
       <div class="container">
-        @yield('content')
+        <div class="page-inner bg-white">
+          @yield('content')
+        </div>
       </div>
 
       <footer class="footer">

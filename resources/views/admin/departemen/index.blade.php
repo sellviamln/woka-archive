@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="card-title">Daftar Departemen</h4>
-                    <a href="{{ route('admin.departemen.create') }}" class="btn btn-primary btn-sm">
+                    <a href="{{ route('admin.departemen.create') }}" class="btn btn-warning btn-sm">
                         <i class="fas fa-plus"></i> Tambah Departemen
                     </a>
                 </div>

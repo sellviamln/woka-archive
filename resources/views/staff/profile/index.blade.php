@@ -45,7 +45,7 @@
     {{-- Card Profil --}}
     <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
         <div class="card-header border-0 py-3 px-4 d-flex align-items-center justify-content-between"
-            style="background-color: var(--bs-primary);">
+            style="background: linear-gradient(135deg, #01447a 30%, #5297b5 70%) !important;">
             <h5 class="mb-0 fw-semibold text-white">
                 <i class="bi bi-person-badge-fill me-2 text-white"></i> Profil Staff
             </h5>
@@ -67,7 +67,7 @@
                                 style="width: 150px; height: 150px; object-fit: cover;">
                             @else
                             <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto shadow-sm"
-                                style="width: 150px; height: 150px; background-color: var(--bs-secondary-bg);">
+                                style="background: linear-gradient(135deg, #00364e 30%, #00335c 70%);">
                                 <i class="bi bi-person-fill fs-1" style="color: var(--bs-secondary-color);"></i>
                             </div>
                             @endif
@@ -75,7 +75,7 @@
                            {{-- Tombol Kamera Upload --}}
                             <label for="uploadFoto"
                                 class="position-absolute translate-middle px-2 py-1 rounded-3 text-white"
-                                style="cursor: pointer; bottom: -20px; left: 50%; transform: translateX(-50%); background-color: var(--bs-primary);">
+                                style="cursor: pointer; bottom: -20px; left: 50%; transform: translateX(-50%); background-color: #01447a;">
                                 <i class="bi bi-camera-fill"></i>
                             </label>
 
@@ -86,9 +86,9 @@
                         <p class="small mb-0">{{ $staff->user->email ?? '-' }}</p>
                         <hr class="my-3 opacity-50">
                         <div class="small text-muted text-start ps-3">
-                            <div class="mb-1"><i class="bi bi-tag me-1"></i> <strong>Departemen</strong> {{ $staff->departemen->nama_departemen ?? '-' }}</div>
-                            <div class="mb-1"><i class="bi bi-building me-1"></i> <strong>No Hp</strong> {{ $staff->no_hp ?? '-' }}</div>
-                            <div class="mb-1"><i class="bi bi-building me-1"></i> <strong>Status</strong> {{ $staff->aktivitas ?? '-' }}</div>
+                            <div class="mb-1"><i class="bi bi-tag me-1"></i> <strong>Departemen :</strong> {{ $staff->departemen->nama_departemen ?? '-' }}</div>
+                            <div class="mb-1"><i class="bi bi-building me-1"></i> <strong>No Hp  :</strong> {{ $staff->no_hp ?? '-' }}</div>
+                            <div class="mb-1"><i class="bi bi-building me-1"></i> <strong>Akses   :</strong> {{ $staff->akses ?? '-' }}</div>
                         </div>
                     </div>
                 </div>

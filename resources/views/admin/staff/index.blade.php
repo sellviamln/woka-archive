@@ -11,7 +11,7 @@
     <div class="card">
          <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="card-title">Daftar Staff</h4>
-                    <a href="{{ route('admin.staff.create') }}" class="btn btn-primary btn-sm">
+                    <a href="{{ route('admin.staff.create') }}" class="btn btn-warning btn-sm">
                         <i class="fas fa-plus"></i> Tambah Staff
                     </a>
                 </div>
