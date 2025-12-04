@@ -73,24 +73,9 @@
                                 @endif
 
                                 {{-- Tombol Kamera Upload --}}
-                                <label for="uploadFoto"
-    class="position-absolute d-flex align-items-center justify-content-center
-           bg-primary text-white rounded-circle shadow"
-    style="
-        width: 32px;
-        height: 32px;
-        cursor: pointer;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 10;
-        border: 2px solid white;
-    ">
-    <i class="bi bi-camera-fill fs-6"></i>
-</label>
-
-
-
+                                <label for="uploadFoto" class="position-absolute d-flex align-items-center justify-content-center bg-primary text-white rounded-circle shadow" style=" width: 32px; height: 32px; cursor: pointer; bottom: -10px; left: 50%; transform: translateX(-50%); z-index: 10; border: 2px solid white;  ">
+                                    <i class="bi bi-camera-fill fs-6"></i>
+                                </label>
                             </div>
 
                             <h6 class="fw-semibold mb-1">{{ $staff->user->name ?? '-' }}</h6>
