@@ -1207,27 +1207,27 @@ body {
 .sidebar[data-background-color=white] .nav.nav-secondary>.nav-item a:focus i,
 .sidebar[data-background-color=white] .nav.nav-secondary>.nav-item a:hover i,
 .sidebar[data-background-color=white] .nav.nav-secondary>.nav-item a[data-toggle=collapse][aria-expanded=true] i {
-   color: #6861ce !important
+   color: #70bad3 !important
 }
 
 .sidebar .nav.nav-secondary>.nav-item a[data-toggle=collapse][aria-expanded=true]:before,
 .sidebar[data-background-color=white] .nav.nav-secondary>.nav-item a[data-toggle=collapse][aria-expanded=true]:before {
-   background: #6861ce !important
+   background: #70bad3!important
 }
 
 .sidebar .nav.nav-secondary>.nav-item.active a:before,
 .sidebar[data-background-color=white] .nav.nav-secondary>.nav-item.active a:before {
-   background: #6861ce !important
+   background: #70bad3 !important
 }
 
 .sidebar .nav.nav-secondary>.nav-item.active a i,
 .sidebar[data-background-color=white] .nav.nav-secondary>.nav-item.active a i {
-   color: #6861ce !important
+   color: #82dbf4 !important
 }
 
 .sidebar .nav.nav-secondary>.nav-item .nav-collapse li.active>a,
 .sidebar[data-background-color=white] .nav.nav-secondary>.nav-item .nav-collapse li.active>a {
-   color: #6861ce !important
+   color: #70bad3 !important
 }
 
 .sidebar .nav.nav-info>.nav-item a:focus i,
