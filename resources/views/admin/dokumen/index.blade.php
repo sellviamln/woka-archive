@@ -11,7 +11,7 @@
         <div class="card-header d-flex justify-content-between align-items-center">
             <h4 class="card-title">Daftar Dokumen</h4>
             <h5 class="card-title">
-                <a href="{{ route('admin.dokumen.create') }}" class="btn btn-primary text-white">+ Tambah</a>
+                <a href="{{ route('admin.dokumen.create') }}" class="btn btn-warning text-white">+ Tambah</a>
             </h5>
         </div>
 
@@ -40,11 +40,15 @@
                         <td>{{ $dokumen->tanggal_upload }}</td>
                         <td>{{ $dokumen->tanggal_kadaluarsa}}</td>
                         <td>
-                            <div class="d-flex flex-wrap gap-2">
-                                <a href="{{ route('admin.dokumen.edit', $dokumen->id) }}" class="btn btn-warning btn-sm" title="Edit Dokumen">
+                            <div class="d-flex align-items-center gap-2">
+
+                                <a href="{{ route('admin.dokumen.edit', $dokumen->id) }}"
+                                    class="btn btn-warning btn-sm" title="Edit Dokumen">
                                     Edit
                                 </a>
-                                <form action="{{ route('admin.dokumen.destroy', $dokumen->id) }}" method="POST" class="d-inline m-0"
+
+                                <form action="{{ route('admin.dokumen.destroy', $dokumen->id) }}"
+                                    method="POST" class="m-0"
                                     onsubmit="return confirm('Apakah Anda yakin ingin menghapus dokumen: {{ $dokumen->judul }}? Aksi ini tidak dapat dibatalkan.')">
                                     @csrf
                                     @method('DELETE')
@@ -52,12 +56,17 @@
                                         Hapus
                                     </button>
                                 </form>
-                                <button type="button" class="btn btn-info btn-sm" title="Lihat Detail Dokumen"
+
+                                <button type="button"
+                                    class="btn btn-info btn-sm"
                                     data-bs-toggle="modal"
-                                    data-bs-target="#detailDokumen{{ $dokumen->id }}">
+                                    data-bs-target="#detailDokumen{{ $dokumen->id }}"
+                                    title="Lihat Detail Dokumen">
                                     Detail
                                 </button>
+
                             </div>
+
                         </td>
                     </tr>
                     <div class="modal fade" id="detailDokumen{{ $dokumen->id }}" tabindex="-1" aria-labelledby="detailDokumenLabel{{ $dokumen->id }}" aria-hidden="true">

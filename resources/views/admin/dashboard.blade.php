@@ -24,6 +24,9 @@
                     <div>
                         <p class="text-muted mb-0">Total Dokumen</p>
                         <h4 class="fw-bold">{{ $totalDokumen  }}</h4>
+                        <p class="mb-0">
+                            <span class="text-succes text-sm font-weight-bolder"></span><a href="{{route('admin.dokumen.index')}}">Lihat Dokumen</a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -38,6 +41,9 @@
                     <div>
                         <p class="text-muted mb-0">Kategori</p>
                         <h4 class="fw-bold">{{ $totalKategori  }}</h4>
+                        <p class="mb-0">
+                            <span class="text-succes text-sm font-weight-bolder"></span><a href="{{route('admin.kategori.index')}}">Lihat Kategori</a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -52,6 +58,9 @@
                     <div>
                         <p class="text-muted mb-0">Departemen</p>
                         <h4 class="fw-bold">{{ $totalDepartemen  }}</h4>
+                        <p class="mb-0">
+                            <span class="text-succes text-sm font-weight-bolder"></span><a href="{{route('admin.departemen.index')}}">Lihat Departemen</a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -66,6 +75,9 @@
                     <div>
                         <p class="text-muted mb-0">Staff Pengelola</p>
                         <h4 class="fw-bold">{{ $totalStaff  }}</h4>
+                        <p class="mb-0">
+                            <span class="text-succes text-sm font-weight-bolder"></span><a href="{{route('admin.staff.index')}}">Lihat Staff</a>
+                        </p>
                     </div>
                 </div>
             </div>

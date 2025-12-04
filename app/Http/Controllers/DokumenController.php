@@ -38,14 +38,11 @@ class DokumenController extends Controller
             'tipe_file'          => 'required',
             'deskripsi'          => 'nullable',
             'dokumen'            => 'required|file|max:50000|mimes:docx,jpg,jpeg,png,pdf',
-            'tipe_file'  => 'required',
-            'deskripsi'   => 'nullable',
-            'dokumen' => 'required|file|max:50000|mimes:docx,jpg,jpeg,png,pdf',
-
-
         ]);
 
+
         $filePath = $request->file('dokumen')->store('dokumen', 'public');
+
 
         Dokumen::create([
             'no_dokumen'         => 'DOC-' . time(),
@@ -59,11 +56,6 @@ class DokumenController extends Controller
             'deskripsi'          => $request->deskripsi,
             'dokumen'            => $filePath,
             'uploaded_by'        => Auth::id(),
-            'tipe_file'         => $request->tipe_file,
-            'deskripsi'         => $request->deskripsi,
-            'dokumen'           => $filePath,
-            'uploaded_by' => Auth::id(),
-
         ]);
 
         return redirect()->route('admin.dokumen.index')

@@ -224,7 +224,8 @@ td {
 body,
 html {
    font-size: 14px;
-   color: #2a2f5b
+  
+   background-color:  #5297b5 ;
 }
 
 a {
@@ -250,6 +251,7 @@ h2 {
 .h3,
 h3 {
    font-size: 1.64rem
+   
 }
 
 .h4,
@@ -340,7 +342,7 @@ strong {
 
 .text-primary,
 .text-primary a {
-   color: #1572e8 !important
+   color: #01447a !important
 }
 
 .text-primary a:hover,
@@ -877,11 +879,12 @@ body {
 }
 
 .footer {
-   border-top: 1px solid #eee;
-   padding: 15px;
-   background: #fff;
+   border-top: 1px solid #eeeeee;
+   padding: 10px;
+   background: #fafafa ;
    position: absolute;
-   width: 100%
+   width: 100%;
+ 
 }
 
 .footer .container,
@@ -2361,10 +2364,8 @@ body[data-background-color=dark] .border-top {
 
 .sidebar[data-background-color=dark] {
     background: linear-gradient(
-        135deg,
-      #00cfff 0%,      /* biru gelap seperti body */
-      #00335c 30%,     /* biru laut sedang */
-      #001f2d 70%      /* cyan terang aurora */
+        135deg,     /* biru gelap seperti body */
+       #01447a 30%,  #5297b5 70%
       
     ) !important;
 }
@@ -5221,7 +5222,8 @@ label.error {
 }
 
 .navbar .navbar-nav .nav-item {
-   padding: 0 4px
+   /* padding: 0 4px */
+   padding-right: 30px;
 }
 
 .navbar .navbar-nav .nav-item .nav-link {
@@ -5310,22 +5312,20 @@ label.error {
 }
 
 .navbar-header {
-   padding: 0 30px
+   /* padding: 0 30px */
+   padding: 0;
 }
 
 .navbar-header .container-fluid {
     min-height: inherit;
     padding: 0 !important;
-
+    
     /* Gradasi biru laut ala aurora */
     background: linear-gradient(
         135deg,
-        #001f2d 0%,    /* biru gelap seperti body */
-        #00335c 50%,   /* biru laut sedang */
-        #00cfff 100%   /* cyan terang aurora */
-    );
-
-    color: #ffffff;   /* teks putih agar kontras */
+        #01447a 30%, #5297b5 70%) !important;   /* biru laut sedang */
+          /* cyan terang aurora */
+    
 }
 
 
@@ -6483,15 +6483,15 @@ label.error {
 }
 
 .btn-warning {
-   background: #ffad46 !important;
-   border-color: #ffad46 !important
+   background: #01447a !important;
+   border-color:  #01447a !important
 }
 
 .btn-warning:disabled,
 .btn-warning:focus,
 .btn-warning:hover {
-   background: #ffad46 !important;
-   border-color: #ffad46 !important
+   background: #09518b !important;
+   border-color: #09518b !important
 }
 
 .btn-danger {
