@@ -42,6 +42,8 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
   <style>
     .sidebar {
       background: rgba(255, 255, 255, 0.10) !important;

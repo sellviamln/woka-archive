@@ -13,34 +13,42 @@ class AuthController extends Controller
     }
 
     public function login_proses(Request $request)
-{
-    $request->validate([
-        'email' => 'required|email',
-        'password' => 'required'
-    ]);
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
-    $credentials = $request->only('email', 'password');
+        $credentials = $request->only('email', 'password');
 
-    if (Auth::attempt($credentials)) {
-        $request->session()->regenerate();
+        if (Auth::attempt($credentials)) {
 
-        $user = Auth::user();
+            $request->session()->regenerate();
+            $user = Auth::user();
 
-        if ($user->role === 'admin') {
-            return redirect()->route('admin.dashboard');
-        } elseif ($user->role === 'staff') {
-            return redirect()->route('staff.dashboard');
-        } else {
-            Auth::logout();
-            return redirect()->route('login')->withErrors([
-                'role' => 'Role pengguna tidak dikenali!',
-            ]);
+            if ($user->status === 'inactive') {
+
+                Auth::logout();
+
+                return back()->withErrors([
+                    'email' => 'Akun Anda inactive. Silakan hubungi admin.'
+                ]);
+            }
+
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.dashboard');
+            } elseif ($user->role === 'staff') {
+                return redirect()->route('staff.dashboard');
+            } else {
+                Auth::logout();
+                return redirect()->route('login')->withErrors([
+                    'role' => 'Role pengguna tidak dikenali!',
+                ]);
+            }
         }
+
+        return back()->withErrors([
+            'email' => 'Email atau password salah!',
+        ])->onlyInput('email');
     }
-
-    return back()->withErrors([
-        'email' => 'Email atau password salah!',
-    ])->onlyInput('email');
-}
-
 }
