@@ -60,7 +60,9 @@ Route::prefix('staff')->name('staff.')->middleware(['auth', 'role:staff'])->grou
     Route::get('/dokumen', [KategoriController::class, 'kelolaDokumen'])->name('dokumen');
     Route::get('/dokumen', [DokumenController::class, 'Dokumen'])->name('dokumen.index');
 
-    Route::get('/dokumen/{id}', [DokumenController::class, 'show'])->name('dokumen.show');
+    Route::get('/dokumen/tampil/{slug}', [DokumenController::class, 'tampil'])->name('dokumen.tampil-dokumen');
+    Route::get('/dokumen/tambah/{id}', [DokumenController::class, 'tambah'])->name('dokumen.tambah');
+
 
     Route::post('/dokumen/upload/{kategori}', [DokumenController::class, 'upload'])->name('dokumen.upload');
     

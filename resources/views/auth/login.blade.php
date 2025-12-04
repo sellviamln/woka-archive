@@ -26,18 +26,20 @@
 
     /* Aurora Layer */
     .aurora {
-      
+
       position: absolute;
       width: 120%;
       height: 120%;
       top: -10%;
       left: -10%;
-      background: radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.4), transparent 60%),
-        radial-gradient(circle at 80% 20%, rgba(0, 150, 255, 0.35), transparent 60%),
-        radial-gradient(circle at 60% 80%, rgba(0, 200, 255, 0.35), transparent 60%),
-        radial-gradient(circle at 30% 70%, rgba(0, 255, 200, 0.3), transparent 70%);
-      filter: blur(120px);
+      background: linear-gradient(135deg, #5297b5 30%, #01447a 70%);
+        
       animation: auroraMove 18s infinite alternate ease-in-out;
+    }
+
+    body,
+    body * {
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
 
     /* Animasi lembut aurora */
@@ -118,7 +120,8 @@
 
 
     <!-- LOGO -->
-    <img src="{{ asset('storage/logo/logo-putih.png') }}" alt="Logo" width="200">
+    
+    <img src="{{asset('assets/img/kaiadmin/logo-putih.png')}}" alt="Logo"  height="100">
 
     @if ($errors->any())
     <div class="alert alert-danger small">
