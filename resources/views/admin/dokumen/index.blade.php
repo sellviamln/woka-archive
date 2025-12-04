@@ -11,7 +11,7 @@
         <div class="card-header d-flex justify-content-between align-items-center">
             <h4 class="card-title">Daftar Dokumen</h4>
             <h5 class="card-title">
-                <a href="{{ route('admin.dokumen.create') }}" class="btn btn-primary text-white">+ Tambah</a>
+                <a href="{{ route('admin.dokumen.create') }}" class="btn btn-warning text-white">+ Tambah</a>
             </h5>
         </div>
 
