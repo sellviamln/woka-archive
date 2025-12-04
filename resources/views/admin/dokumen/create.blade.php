@@ -40,6 +40,16 @@
                         </div>
 
                         <div class="form-group">
+                            <label>Status</label>
+                            <select name="status" class="form-control">
+                                <option value="">--Pilih--</option>
+                                <option value="active">Active</option>
+                                <option value="archive">Archive</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
                             <label for="departemen_id">Departemen</label>
                             <select name="departemen_id" class="form-control">
                                 <option value="">--Pilih--</option>
@@ -76,25 +86,25 @@
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
 
-    const fileInput = document.getElementById('dokumen');
-    const tipeFileInput = document.getElementById('tipe_file');
+        const fileInput = document.getElementById('dokumen');
+        const tipeFileInput = document.getElementById('tipe_file');
 
-    fileInput.addEventListener('change', function () {
-        if (this.files.length > 0) {
+        fileInput.addEventListener('change', function() {
+            if (this.files.length > 0) {
 
-            let fileName = this.files[0].name;
+                let fileName = this.files[0].name;
 
-            // ambil ekstensi
-            let ext = fileName.split('.').pop().toLowerCase();
+                // ambil ekstensi
+                let ext = fileName.split('.').pop().toLowerCase();
 
-            // tampilkan di input tipe file
-            tipeFileInput.value = ext;
-        }
+                // tampilkan di input tipe file
+                tipeFileInput.value = ext;
+            }
+        });
+
     });
-
-});
 </script>
 
 @endsection

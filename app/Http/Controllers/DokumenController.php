@@ -27,48 +27,40 @@ class DokumenController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'judul'              => 'required',
-            'departemen_id'      => 'required',
-            'kategori_id'        => 'required',
-            'tanggal_upload'     => 'required|date',
-            'tanggal_kadaluarsa' => 'required|date',
-            'status'             => 'required',
-            'tipe_file'          => 'required',
-            'deskripsi'          => 'nullable',
-            'dokumen'            => 'required|file|max:50000|mimes:docx,jpg,jpeg,png,pdf',
-            'tipe_file'  => 'required',
-            'deskripsi'   => 'nullable',
-            'dokumen' => 'required|file|max:50000|mimes:docx,jpg,jpeg,png,pdf',
+{
+    $request->validate([
+        'judul'              => 'required',
+        'departemen_id'      => 'required',
+        'kategori_id'        => 'required',
+        'tanggal_upload'     => 'required|date',
+        'tanggal_kadaluarsa' => 'required|date',
+        'status'             => 'required',
+        'tipe_file'          => 'required',
+        'deskripsi'          => 'nullable',
+        'dokumen'            => 'required|file|max:50000|mimes:docx,jpg,jpeg,png,pdf',
+    ]);
+
+    
+    $filePath = $request->file('dokumen')->store('dokumen', 'public');
 
 
-        ]);
+    Dokumen::create([
+        'no_dokumen'         => 'DOC-' . time(),
+        'departemen_id'      => $request->departemen_id,
+        'kategori_id'        => $request->kategori_id,
+        'judul'              => $request->judul,
+        'tanggal_upload'     => $request->tanggal_upload,
+        'tanggal_kadaluarsa' => $request->tanggal_kadaluarsa,
+        'status'             => $request->status,
+        'tipe_file'          => $request->tipe_file,
+        'deskripsi'          => $request->deskripsi,
+        'dokumen'            => $filePath,
+        'uploaded_by'        => Auth::id(),
+    ]);
 
-        $filePath = $request->file('dokumen')->store('dokumen', 'public');
-
-        Dokumen::create([
-            'no_dokumen'         => 'DOC-' . time(),
-            'departemen_id'      => $request->departemen_id,
-            'kategori_id'        => $request->kategori_id,
-            'judul'              => $request->judul,
-            'tanggal_upload'     => $request->tanggal_upload,
-            'tanggal_kadaluarsa' => $request->tanggal_kadaluarsa,
-            'status'             => $request->status,
-            'tipe_file'          => $request->tipe_file,
-            'deskripsi'          => $request->deskripsi,
-            'dokumen'            => $filePath,
-            'uploaded_by'        => Auth::id(),
-            'tipe_file'         => $request->tipe_file,
-            'deskripsi'         => $request->deskripsi,
-            'dokumen'           => $filePath,
-            'uploaded_by' => Auth::id(),
-
-        ]);
-
-        return redirect()->route('admin.dokumen.index')
-            ->with('success', 'Dokumen berhasil ditambahkan.');
-    }
+    return redirect()->route('admin.dokumen.index')
+        ->with('success', 'Dokumen berhasil ditambahkan.');
+}
 
     public function edit(Dokumen $dokumen)
     {

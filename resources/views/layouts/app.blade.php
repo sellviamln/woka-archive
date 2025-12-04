@@ -2,8 +2,6 @@
 <html lang="en">
 
 <head>
-
-
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Woka Archive - @yield('title', 'Dashboard')</title>
   <meta
@@ -139,13 +137,13 @@
             @if(auth()->user()->role == 'admin')
             <li class="nav-item {{request()->routeIs('admin.dashboard.*') ? 'active' : ''}}">
               <a href="{{ route('admin.dashboard')}}">
-                <i class="fas fa-home  fa-2x "></i>
+                <i class="fas fa-home"></i>
                 <p>Dashboard</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ url('/admin/departemen') }}">
-                <i class="fas fa-th-list  fa-2x text-primary"></i>
+                <i class="fas fa-th-list"></i>
                 <p>Departemen</p>
               </a>
             </li>
@@ -285,7 +283,10 @@
                   aria-expanded="false">
                   <div class="avatar-sm">
                     <img
-                      src="{{ asset('assets/img/logo-admin.jpg') }}"
+                     src="{{ Auth::user()->role === 'staff'
+        ? asset('storage/' . (optional(Auth::user()->staff)->foto ?? 'default.png'))
+        : asset('storage/default.png')
+    }}"
                       alt="..."
                       class="avatar-img rounded-circle" />
                   </div>
@@ -301,7 +302,10 @@
                       <div class="user-box">
                         <div class="avatar-lg">
                           <img
-                            src="{{asset('assets/img/logo-admin.jpg')}}"
+                            src="{{ Auth::user()->role === 'staff'
+        ? asset('storage/' . (optional(Auth::user()->staff)->foto ?? 'default.png'))
+        : asset('storage/default.png')
+    }}"
                             alt="image profile"
                             class="avatar-img rounded" />
                         </div>
