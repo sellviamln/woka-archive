@@ -7,40 +7,40 @@
 
     {{-- Alert sukses --}}
     @if (session('success'))
-        <div id="alert-success"
-            class="alert alert-success alert-dismissible fade show shadow-sm border-0 rounded-3 px-4 py-3 mt-2 small"
-            role="alert">
-            <i class="bi bi-check-circle-fill me-2"></i>{{ session('success') }}
-        </div>
+    <div id="alert-success"
+        class="alert alert-success alert-dismissible fade show shadow-sm border-0 rounded-3 px-4 py-3 mt-2 small"
+        role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>{{ session('success') }}
+    </div>
 
-        <script>
-            setTimeout(() => {
-                const alert = document.getElementById('alert-success');
-                if (alert) {
-                    const bsAlert = new bootstrap.Alert(alert);
-                    bsAlert.close();
-                }
-            }, 3000);
-        </script>
+    <script>
+        setTimeout(() => {
+            const alert = document.getElementById('alert-success');
+            if (alert) {
+                const bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            }
+        }, 3000);
+    </script>
     @endif
 
     {{-- Alert error --}}
     @if ($errors->any())
-        <div id="alert-danger"
-            class="alert alert-danger alert-dismissible fade show shadow-sm border-0 rounded-3 px-4 py-3 mt-2 small"
-            role="alert">
-            <i class="bi bi-x-circle-fill me-2"></i>{{ $errors->first() }}
-        </div>
+    <div id="alert-danger"
+        class="alert alert-danger alert-dismissible fade show shadow-sm border-0 rounded-3 px-4 py-3 mt-2 small"
+        role="alert">
+        <i class="bi bi-x-circle-fill me-2"></i>{{ $errors->first() }}
+    </div>
 
-        <script>
-            setTimeout(() => {
-                const alert = document.getElementById('alert-danger');
-                if (alert) {
-                    const bsAlert = new bootstrap.Alert(alert);
-                    bsAlert.close();
-                }
-            }, 3000);
-        </script>
+    <script>
+        setTimeout(() => {
+            const alert = document.getElementById('alert-danger');
+            if (alert) {
+                const bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            }
+        }, 3000);
+    </script>
     @endif
 
     {{-- Card Profil --}}
@@ -66,14 +66,14 @@
 
                             <div class="mb-3 position-relative d-inline-block">
                                 @if ($staff->foto)
-                                    <img src="{{ asset('storage/' . $staff->foto) }}" alt="Foto Profil"
-                                        class="img-fluid rounded-circle shadow-sm border border-3 border-primary-subtle"
-                                        style="width: 150px; height: 150px; object-fit: cover;">
+                                <img src="{{ asset('storage/' . $staff->foto) }}" alt="Foto Profil"
+                                    class="img-fluid rounded-circle shadow-sm border border-3 border-primary-subtle"
+                                    style="width: 150px; height: 150px; object-fit: cover;">
                                 @else
-                                    <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto shadow-sm"
-                                        style="width: 150px; height: 150px; background-color: var(--bs-secondary-bg);">
-                                        <i class="bi bi-person-fill fs-1" style="color: var(--bs-secondary-color);"></i>
-                                    </div>
+                                <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto shadow-sm"
+                                    style="width: 150px; height: 150px; background-color: var(--bs-secondary-bg);">
+                                    <i class="bi bi-person-fill fs-1" style="color: var(--bs-secondary-color);"></i>
+                                </div>
                                 @endif
 
                                 {{-- Tombol kamera --}}
@@ -118,32 +118,51 @@
 
                             <div class="row g-3">
 
+                                {{-- NAME --}}
                                 <div class="col-md-6">
                                     <label class="form-label small text-muted mb-1">Nama Lengkap</label>
-                                    <input type="text" name="name" class="form-control bg-transparent border shadow-sm rounded-3 py-2"
-                                        value="{{ $staff->user->name }}">
+                                    <input type="text" name="name"
+                                        class="form-control bg-transparent border shadow-sm rounded-3 py-2 @error('name') is-invalid @enderror"
+                                        value="{{ old('name', $staff->user->name) }}">
+                                    @error('name')
+                                    <div class="invalid-feedback small">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
+                                {{-- EMAIL --}}
                                 <div class="col-md-6">
                                     <label class="form-label small text-muted mb-1">Email</label>
-                                    <input type="email" name="email" class="form-control bg-transparent border shadow-sm rounded-3 py-2"
-                                        value="{{ $staff->user->email }}">
+                                    <input type="email" name="email"
+                                        class="form-control bg-transparent border shadow-sm rounded-3 py-2 @error('email') is-invalid @enderror"
+                                        value="{{ old('email', $staff->user->email) }}">
+                                    @error('email')
+                                    <div class="invalid-feedback small">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
+                                {{-- PASSWORD --}}
                                 <div class="col-md-6">
                                     <label class="form-label small text-muted mb-1">Password</label>
-                                    <input type="password" name="password" class="form-control bg-transparent border shadow-sm rounded-3 py-2">
+                                    <input type="password" name="password"
+                                        class="form-control bg-transparent border shadow-sm rounded-3 py-2 @error('password') is-invalid @enderror">
+                                    @error('password')
+                                    <div class="invalid-feedback small">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
+                                {{-- NO HP --}}
                                 <div class="col-md-6">
                                     <label class="form-label small text-muted mb-1">No Hp</label>
-                                    <input type="text" name="no_hp" class="form-control bg-transparent border shadow-sm rounded-3 py-2"
-                                        value="{{ $staff->no_hp }}">
+                                    <input type="text" name="no_hp"
+                                        class="form-control bg-transparent border shadow-sm rounded-3 py-2 @error('no_hp') is-invalid @enderror"
+                                        value="{{ old('no_hp', $staff->no_hp) }}">
+                                    @error('no_hp')
+                                    <div class="invalid-feedback small">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 {{-- upload foto --}}
-                                <input type="file" id="uploadFoto" name="foto" class="d-none" accept="image/*"
-                                    onchange="this.form.submit()">
+                                <input type="file" id="uploadFoto" name="foto" class="d-none" accept="image/*">
 
                                 <div class="col-md-6">
                                     <label class="form-label small text-muted mb-1">Departemen</label>
