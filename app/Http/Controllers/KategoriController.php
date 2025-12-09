@@ -11,7 +11,7 @@ class KategoriController extends Controller
 {
     public function index()
     {
-       $kategori = Kategori::all();
+        $kategori = Kategori::all();
         return view('admin.kategori.index', compact('kategori'));
     }
 
@@ -23,19 +23,31 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_kategori' => 'required|max:150',
+            'nama_kategori' => 'required|max:150|unique:kategori,nama_kategori',
             'deskripsi'     => 'nullable',
+        ], [
+            'nama_kategori.required' => 'Nama kategori wajib diisi.',
+            'nama_kategori.unique'   => 'Nama kategori sudah ada, silakan gunakan nama lain.',
         ]);
+
+        $slug = Str::slug($request->nama_kategori);
+        $originalSlug = $slug;
+        $count = 1;
+
+        while (Kategori::where('slug', $slug)->exists()) {
+            $slug = $originalSlug . '-' . $count++;
+        }
 
         Kategori::create([
             'nama_kategori' => $request->nama_kategori,
-            'slug'          => Str::slug($request->nama_kategori),
+            'slug'          => $slug,
             'deskripsi'     => $request->deskripsi
         ]);
 
         return redirect()->route('admin.kategori.index')
-                        ->with('success', 'Kategori berhasil ditambahkan.');
+            ->with('success', 'Kategori berhasil ditambahkan.');
     }
+
 
     public function edit($kategori)
     {
@@ -59,7 +71,7 @@ class KategoriController extends Controller
         ]);
 
         return redirect()->route('admin.kategori.index')
-                        ->with('success', 'Kategori berhasil diperbarui.');
+            ->with('success', 'Kategori berhasil diperbarui.');
     }
 
     public function destroy($kategori)
@@ -68,11 +80,6 @@ class KategoriController extends Controller
         $kategori->delete();
 
         return redirect()->route('admin.kategori.index')
-                        ->with('success', 'Kategori berhasil dihapus.');
+            ->with('success', 'Kategori berhasil dihapus.');
     }
-
-
 }
-
-
-
