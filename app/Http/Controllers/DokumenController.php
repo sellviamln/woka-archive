@@ -75,13 +75,13 @@ class DokumenController extends Controller
         $validated = $request->validate([
             'judul' => 'required|string',
             'tanggal_upload' => 'required|date',
-            'tanggal_kadaluarsa' => 'nullable|date',
+            'tanggal_kadaluarsa' => 'required|date',
             'departemen_id' => 'required|integer',
             'kategori_id' => 'required|integer',
             'status' => 'required|string',
             'deskripsi' => 'nullable|string',
             'tipe_file' => 'required|string',
-            'dokumen' => 'nullable|file|mimes:pdf,docx,jpg,png|max:50000',
+            'dokumen' => 'required|file|mimes:pdf,docx,jpg,png|max:50000',
         ]);
 
         if ($request->hasFile('dokumen')) {

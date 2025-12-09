@@ -31,22 +31,34 @@
                             <label>Tipe File</label>
                             <input type="text" id="show_tipe_file" class="form-control" value="{{ strtoupper($tipe) }}" readonly>
                             <input type="hidden" name="tipe_file" id="tipe_file" value="{{ $tipe }}">
+                            @error('tipe_file')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Judul</label>
                             <input type="text" name="judul" class="form-control" value="{{ old('judul', $dokumen->judul) }}" required>
+                            @error('judul')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Tanggal Upload</label>
-                            <input type="date" name="tanggal_upload" class="form-control" value="{{ old('tanggal_upload', $dokumen->tanggal_upload->format('Y-m-d')) }}">
+                            <input type="date" name="tanggal_upload" class="form-control" value="{{ old('tanggal_upload', $dokumen->tanggal_upload->format('Y-m-d')) }}"  required>
+                            @error('tanggal_upload')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Tanggal Kadaluarsa</label>
-                            <input type="date" name="tanggal_kadaluarsa" class="form-control" value="{{ old('tanggal_kadaluarsa', $dokumen->tanggal_kadaluarsa->format('Y-m-d')) }}">
+                            <input type="date" name="tanggal_kadaluarsa" class="form-control" value="{{ old('tanggal_kadaluarsa', $dokumen->tanggal_kadaluarsa->format('Y-m-d')) }}"  required>
+                            @error('tanggal_kadaluarsa')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Departemen</label>
-                            <select name="departemen_id" class="form-control">
+                            <select name="departemen_id" class="form-control"  required>
                                 <option value="">-- Pilih Departemen --</option>
                                 @foreach ($departemens as $departemen)
                                 <option value="{{ $departemen->id }}"
@@ -55,10 +67,13 @@
                                 </option>
                                 @endforeach
                             </select>
+                            @error('departemen_id')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Kategori</label>
-                            <select name="kategori_id" class="form-control">
+                            <select name="kategori_id" class="form-control"  required>
                                 <option value="">-- Pilih Kategori --</option>
                                 @foreach ($kategoris as $kategori)
                                 <option value="{{ $kategori->id }}"
@@ -67,10 +82,13 @@
                                 </option>
                                 @endforeach
                             </select>
+                            @error('kategori_id')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Status</label>
-                            <select name="status" class="form-control">
+                            <select name="status" class="form-control"  required>
                                 @foreach (['active','archive'] as $status)
                                 <option value="{{ $status }}"
                                     {{ $dokumen->status == $status ? 'selected' : '' }}>
@@ -78,13 +96,16 @@
                                 </option>
                                 @endforeach
                             </select>
+                            @error('status')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" required>
                             <label>Deskripsi</label>
                             <textarea name="deskripsi" class="form-control">{{ old('deskripsi', $dokumen->deskripsi) }}</textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>
-                        <a href="{{ route('admin.dokumen.index') }}" class="btn btn-secondary">Batal</a>
+                        <a href="{{ route('admin.dokumen.index') }}" class="btn btn-secondary">Kembali</a>
                     </div>
                 </div>
             </form>
