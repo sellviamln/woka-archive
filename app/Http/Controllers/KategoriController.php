@@ -71,13 +71,6 @@ class KategoriController extends Controller
                         ->with('success', 'Kategori berhasil dihapus.');
     }
 
-     public function kategoriStaff()
-    {
-       $kategori = Kategori::all();
-        return view('staff.kategori.index', compact('kategori'));
-    }
-
-
 
 }
 

@@ -51,10 +51,6 @@ Route::prefix('staff')->name('staff.')->middleware(['auth', 'role:staff'])->grou
     Route::get('/profile', [StaffController::class, 'profile'])->name('profile');
     Route::put('/profile/update', [StaffController::class, 'profileUpdate'])->name('profile.update');
 
-    //kategori staff
-    Route::get('/kategori', [KategoriController::class, 'kategoriStaff'])->name('kategori');
-
-
 
     //kelola dokumen atau kategori
     Route::get('/dokumen', [KategoriController::class, 'kelolaDokumen'])->name('dokumen');

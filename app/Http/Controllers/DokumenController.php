@@ -180,7 +180,7 @@ class DokumenController extends Controller
             'deskripsi'          => $request->deskripsi,
             'dokumen'            => $filePath,
             'uploaded_by'        => Auth::id(),
-            'kategori_id'        => $request->kategori_id,
+            'kategori_id'        => $kategoriId,
             'departemen_id'      => Auth::user()->staff->departemen_id,
             'tipe_file'          => $request->file('dokumen')->getClientOriginalExtension(),
         ]);

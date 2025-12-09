@@ -191,12 +191,6 @@
               </a>
             </li>
 
-            <li class="nav-item {{request()->routeIs('staff.kategori.*') ? 'active' : ''}}">
-              <a href="{{ route('staff.kategori')}}">
-                <i class="fas fa-folder-open fa-2x text-primary"></i>
-                <p>Kategori</p>
-              </a>
-            </li>
 
             <li
               class="nav-item {{request()->routeIs('staff.dokumen') ? 'active' : ''}}">
