@@ -137,7 +137,7 @@ class DokumenController extends Controller
         $dokumens = Dokumen::where('kategori_id', $kategori->id)
             ->when($user->role !== 'admin', function ($query) use ($user) {
                 // kalau bukan admin, batasi sesuai departemen
-                $query->where('departemen_id', $user->departemen_id);
+                $query->where('departemen_id', $user->staff->departemen_id);
             })
             ->latest()
             ->get();
