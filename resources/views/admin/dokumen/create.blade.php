@@ -17,27 +17,42 @@
                             <label for="dokumen">Dokumen</label>
                             <input type="file" name="dokumen" class="form-control" id="dokumen">
                         </div>
+                        @error('dokumen')
+                            <div class="invalid-feedback small">{{ $message }}</div>
+                        @enderror
 
                         <div class="form-group">
                             <label for="tipe_file">Tipe File</label>
                             <input type="text" name="tipe_file" class="form-control" id="tipe_file" readonly>
                         </div>
+                        @error('tipe_File')
+                            <div class="invalid-feedback small">{{ $message }}</div>
+                            @enderror
 
 
                         <div class="form-group">
                             <label for="judul">Judul</label>
                             <input type="text" name="judul" class="form-control" id="judul">
                         </div>
+                        @error('judul')
+                            <div class="invalid-feedback small">{{ $message }}</div>
+                            @enderror
 
                         <div class="form-group">
                             <label for="tanggal_upload">Tanggal Upload</label>
                             <input type="date" name="tanggal_upload" class="form-control">
                         </div>
+                        @error('tanggal_upload')
+                            <div class="invalid-feedback small">{{ $message }}</div>
+                            @enderror
 
                         <div class="form-group">
                             <label for="tanggal_kadaluarsa">Tanggal Kadaluarsa</label>
                             <input type="date" name="tanggal_kadaluarsa" class="form-control">
                         </div>
+                        @error('tanggal_kadaluarsa')
+                            <div class="invalid-feedback small">{{ $message }}</div>
+                            @enderror
 
                         <div class="form-group">
                             <label>Status</label>
@@ -73,11 +88,15 @@
                             <label for="deskripsi">Deskripsi</label>
                             <textarea name="deskripsi" rows="5" class="form-control"></textarea>
                         </div>
-
+                        @error('deskripsi')
+                            <div class="invalid-feedback small">{{ $message }}</div>
+                            @enderror
+                        .
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary">Simpan</button>
                             <a href="{{ route('admin.dokumen.index') }}" class="btn btn-black">Batal</a>
                         </div>
+                       
                     </div>
                 </div>
             </form>

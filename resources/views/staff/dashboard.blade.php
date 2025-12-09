@@ -37,13 +37,6 @@
                 <div class="flex-shrink-0 me-3">
                     <i class="fas fa-layer-group fa-2x text-success"></i>
                 </div>
-                <div>
-                    <p class="text-muted mb-0">Kategori</p>
-                    <h4 class="fw-bold">{{$Kategori ?? 0}}</h4>
-                    <p class="mb-0">
-                        <span class="text-succes text-sm font-weight-bolder"></span><a href="{{route('staff.kategori')}}">Lihat Kategori</a>
-                    </p>
-                </div>
             </div>
         </div>
     </div>

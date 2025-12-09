@@ -46,7 +46,7 @@
     {{-- Card Profil --}}
     <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
         <div class="card-header border-0 py-3 px-4 d-flex align-items-center justify-content-between"
-            style="background: linear-gradient(135deg, #01447a 30%, #5297b5 70%) !important;">
+            style="background-color: var(--bs-primary);">
             <h5 class="mb-0 fw-semibold text-white">
                 <i class="bi bi-person-badge-fill me-2 text-white"></i> Profil Staff
             </h5>
@@ -93,9 +93,8 @@
                                 </label>
                             </div>
 
-                            <h6 class="fw-semibold mb-1">{{ $staff->user->name }}</h6>
-                            <p class="small mb-0">{{ $staff->user->email }}</p>
-
+                            <h6 class="fw-semibold mb-1">{{ $staff->user->name ?? '-' }}</h6>
+                            <p class="small mb-0">{{ $staff->user->email ?? '-' }}</p>
                             <hr class="my-3 opacity-50">
 
                             <div class="small text-muted text-start ps-3">

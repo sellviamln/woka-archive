@@ -137,7 +137,7 @@ class DokumenController extends Controller
         $dokumens = Dokumen::where('kategori_id', $kategori->id)
             ->when($user->role !== 'admin', function ($query) use ($user) {
                 // kalau bukan admin, batasi sesuai departemen
-                $query->where('departemen_id', $user->departemen_id);
+                $query->where('departemen_id', $user->staff->departemen_id);
             })
             ->latest()
             ->get();
@@ -180,7 +180,7 @@ class DokumenController extends Controller
             'deskripsi'          => $request->deskripsi,
             'dokumen'            => $filePath,
             'uploaded_by'        => Auth::id(),
-            'kategori_id'        => $request->kategori_id,
+            'kategori_id'        => $kategoriId,
             'departemen_id'      => Auth::user()->staff->departemen_id,
             'tipe_file'          => $request->file('dokumen')->getClientOriginalExtension(),
         ]);
