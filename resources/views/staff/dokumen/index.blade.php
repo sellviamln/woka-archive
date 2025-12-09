@@ -42,7 +42,7 @@
     <div class="row g-3">
         @foreach ($kategori as $kat)
         <div class="col-6 col-md-4 col-lg-3">
-            <a href="{{ route('staff.dokumen.tambah', $kat->id) }}" class="text-decoration-none">
+            <a href="{{ route('staff.dokumen.tampil-dokumen', $kat->slug) }}" class="text-decoration-none">
                 <div class="card folder-card text-center">
 
                     <img
