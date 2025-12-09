@@ -115,10 +115,8 @@
 
                 let fileName = this.files[0].name;
 
-                // ambil ekstensi
                 let ext = fileName.split('.').pop().toLowerCase();
 
-                // tampilkan di input tipe file
                 tipeFileInput.value = ext;
             }
         });
