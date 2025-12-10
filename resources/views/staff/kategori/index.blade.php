@@ -12,8 +12,6 @@
                     <h4 class="card-title">Daftar Kategori</h4>
                 </div>
 
-               
-
                 <div class="card-body">
                     <div class="table-responsive">
                         <table id="basic-datatables" class="display table table-striped table-hover no-wrap-header">
