@@ -37,7 +37,7 @@
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $d->nama_departemen }}</td>
-                                    <td>{{ $d->deskripsi }}</td>
+                                    <td>{{ $d->deskripsi?? '-' }}</td>
                                     <td>
                                         <a href="{{ route('admin.departemen.edit', $d->id) }}"
                                             class="btn btn-warning btn-sm">

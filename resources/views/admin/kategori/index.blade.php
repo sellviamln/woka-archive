@@ -40,7 +40,7 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $k->nama_kategori }}</td>
                                     <td>{{ $k->slug }}</td>
-                                    <td>{{ $k->deskripsi }}</td>
+                                    <td>{{ $k->deskripsi?? '-' }}</td>
 
                                     <td>
                                         <a href="{{ route('admin.kategori.edit', $k->id) }}"

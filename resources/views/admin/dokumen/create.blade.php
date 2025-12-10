@@ -16,43 +16,48 @@
                         <div class="form-group">
                             <label for="dokumen">Dokumen</label>
                             <input type="file" name="dokumen" class="form-control" id="dokumen">
+                            @error('dokumen')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-                        @error('dokumen')
-                            <div class="invalid-feedback small">{{ $message }}</div>
-                        @enderror
+
 
                         <div class="form-group">
                             <label for="tipe_file">Tipe File</label>
                             <input type="text" name="tipe_file" class="form-control" id="tipe_file" readonly>
-                        </div>
-                        @error('tipe_File')
-                            <div class="invalid-feedback small">{{ $message }}</div>
+                            @error('tipe_File')
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                        </div>
+
 
 
                         <div class="form-group">
                             <label for="judul">Judul</label>
                             <input type="text" name="judul" class="form-control" id="judul">
-                        </div>
-                        @error('judul')
-                            <div class="invalid-feedback small">{{ $message }}</div>
+                            @error('judul')
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                        </div>
+
 
                         <div class="form-group">
                             <label for="tanggal_upload">Tanggal Upload</label>
                             <input type="date" name="tanggal_upload" class="form-control">
-                        </div>
-                        @error('tanggal_upload')
-                            <div class="invalid-feedback small">{{ $message }}</div>
+                            @error('tanggal_upload')
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                        </div>
+
 
                         <div class="form-group">
                             <label for="tanggal_kadaluarsa">Tanggal Kadaluarsa</label>
                             <input type="date" name="tanggal_kadaluarsa" class="form-control">
-                        </div>
-                        @error('tanggal_kadaluarsa')
-                            <div class="invalid-feedback small">{{ $message }}</div>
+                            @error('tanggal_kadaluarsa')
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                        </div>
+
 
                         <div class="form-group">
                             <label>Status</label>
@@ -61,6 +66,9 @@
                                 <option value="active">Active</option>
                                 <option value="archive">Archive</option>
                             </select>
+                            @error('status')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
 
@@ -72,6 +80,9 @@
                                 <option value="{{ $departemen->id }}">{{ $departemen->nama_departemen }}</option>
                                 @endforeach
                             </select>
+                            @error('departemen_id')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
@@ -82,21 +93,21 @@
                                 <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
                                 @endforeach
                             </select>
+                            @error('kategori_id')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="deskripsi">Deskripsi</label>
                             <textarea name="deskripsi" rows="5" class="form-control"></textarea>
                         </div>
-                        @error('deskripsi')
-                            <div class="invalid-feedback small">{{ $message }}</div>
-                            @enderror
-                        .
+
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary">Simpan</button>
-                            <a href="{{ route('admin.dokumen.index') }}" class="btn btn-black">Batal</a>
+                            <a href="{{ route('admin.dokumen.index') }}" class="btn btn-secondary">Kembali</a>
                         </div>
-                       
+
                     </div>
                 </div>
             </form>
@@ -115,10 +126,8 @@
 
                 let fileName = this.files[0].name;
 
-                // ambil ekstensi
                 let ext = fileName.split('.').pop().toLowerCase();
 
-                // tampilkan di input tipe file
                 tipeFileInput.value = ext;
             }
         });

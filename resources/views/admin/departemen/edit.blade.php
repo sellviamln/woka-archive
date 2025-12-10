@@ -30,7 +30,7 @@
                             <div class="invalid-feedback small">{{ $message }}</div>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary btn-sm w-100">
+                        <button type="submit" class="btn btn-primary btn-sm">
                             <i class="fas fa-save"></i> Update Data
                         </button>
 

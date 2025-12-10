@@ -31,9 +31,10 @@
                         </div>
 
 
-                        <button type="submit" class="btn btn-primary btn-sm w-100">
+                        <button type="submit" class="btn btn-primary btn-sm">
                             <i class="fas fa-save"></i> Simpan Data
                         </button>
+
 
                     </form>
                 </div>
