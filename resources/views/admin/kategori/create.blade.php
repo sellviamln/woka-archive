@@ -11,6 +11,11 @@
                 <div class="card-header">
                     <h4 class="card-title">Tambah Kategori</h4>
                 </div>
+                <div class="d-flex justify-content-end px-3 pt-3">
+                    <a href="{{ route('admin.kategori.index') }}" class="btn btn-secondary">
+                        Kembali
+                    </a>
+                </div>
 
                 <div class="card-body">
 
@@ -20,15 +25,15 @@
                         {{-- Nama Kategori --}}
                         <div class="form-group mb-3">
                             <label for="nama_kategori">Nama Kategori</label>
-                            <input type="text" 
-                                   class="form-control @error('nama_kategori') is-invalid @enderror"
-                                   id="nama_kategori"
-                                   name="nama_kategori"
-                                   placeholder="Masukkan nama kategori..."
-                                   value="{{ old('nama_kategori') }}">
+                            <input type="text"
+                                class="form-control @error('nama_kategori') is-invalid @enderror"
+                                id="nama_kategori"
+                                name="nama_kategori"
+                                placeholder="Masukkan nama kategori..."
+                                value="{{ old('nama_kategori') }}">
 
                             @error('nama_kategori')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -36,26 +41,23 @@
                         <div class="form-group mb-3">
                             <label for="deskripsi">Deskripsi</label>
                             <textarea class="form-control @error('deskripsi') is-invalid @enderror"
-                                      id="deskripsi"
-                                      name="deskripsi"
-                                      rows="3"
-                                      placeholder="Opsional">{{ old('deskripsi') }}</textarea>
+                                id="deskripsi"
+                                name="deskripsi"
+                                rows="3"
+                                placeholder="Opsional">{{ old('deskripsi') }}</textarea>
 
                             @error('deskripsi')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
                         {{-- Button --}}
                         <div class="d-flex justify-content-between">
-                            <a href="{{ route('admin.kategori.index') }}" class="btn btn-secondary">
-                                Kembali
-                            </a>
-
                             <button type="submit" class="btn btn-primary">
                                 Simpan
                             </button>
                         </div>
+
 
                     </form>
 
