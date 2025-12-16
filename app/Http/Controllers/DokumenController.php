@@ -41,8 +41,11 @@ class DokumenController extends Controller
         ]);
 
 
-        $filePath = $request->file('dokumen')->store('dokumen', 'public');
+        $file = $request->file('dokumen');
 
+        $fileName = $file->getClientOriginalName();
+
+        $filePath = $file->storeAs('dokumen', $fileName, 'public');
 
         Dokumen::create([
             'no_dokumen'         => 'DOC-' . time(),
@@ -131,12 +134,11 @@ class DokumenController extends Controller
     public function tampil($slug)
     {
         $kategori = Kategori::where('slug', $slug)->firstOrFail();
-        $user = Auth::user(); // ambil user yang login
+        $user = Auth::user();
 
-        // Ambil dokumen berdasarkan kategori dan departemen user
+
         $dokumens = Dokumen::where('kategori_id', $kategori->id)
             ->when($user->role !== 'admin', function ($query) use ($user) {
-                // kalau bukan admin, batasi sesuai departemen
                 $query->where('departemen_id', $user->staff->departemen_id);
             })
             ->latest()
@@ -144,7 +146,6 @@ class DokumenController extends Controller
 
         return view('staff.dokumen.tampil-dokumen', compact('kategori', 'dokumens'));
     }
-
 
     public function tambah($kategoriId)
     {
@@ -157,9 +158,6 @@ class DokumenController extends Controller
 
     public function upload(Request $request, $kategoriId)
     {
-    
-
-        // kode lain…
 
         $request->validate([
             'judul'              => 'required',
@@ -170,7 +168,6 @@ class DokumenController extends Controller
             'kategori_id'        => 'required',
         ]);
 
-        // Simpan file
         $filePath = $request->file('dokumen')->store('dokumen', 'public');
 
         Dokumen::create([
@@ -187,5 +184,11 @@ class DokumenController extends Controller
 
         return redirect()->route('staff.dokumen.index')
             ->with('success', 'Dokumen berhasil ditambahkan.');
+    }
+
+    public function download($id)
+    {
+        $dokumen = Dokumen::findOrFail($id);
+        return response()->download(storage_path('app/public/' . $dokumen->dokumen));
     }
 }
