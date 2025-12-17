@@ -96,15 +96,18 @@
                                         <label class="form-label">Deskripsi</label>
                                         <textarea class="form-control" rows="5" readonly>{{ $dokumen->deskripsi }}</textarea>
                                     </div>
+
+                                    @php
+                                    $fileName = basename($dokumen->dokumen);
+                                    $fileUrl = route('admin.dokumen.download', $dokumen->id);
+                                    @endphp
                                     <div class="mb-3">
                                         <label class="form-label">Dokumen</label>
-                                        <div class="border rounded p-2 text-center">
-                                            <img src="{{ asset('storage/'. $dokumen->dokumen) }}"
-                                                alt="Dokumen"
-                                                class="img-fluid"
-                                                style="max-height: 250px; object-fit: contain;">
+                                        <div style="cursor:pointer; color:inherit;" onclick="window.location='{{ $fileUrl }}'">
+                                            {{ $fileName }}
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
