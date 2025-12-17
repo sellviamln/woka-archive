@@ -50,7 +50,7 @@
     }
     .navbar,
     .navbar * {
-      color: #ffffff !important;
+      color: #ffffff;
     }
 
     .sidebar i,
@@ -272,55 +272,61 @@
                   </form>
                 </ul>
               </li>
-              <li class="nav-item topbar-user dropdown hidden-caret">
-                <a
-                  class="dropdown-toggle profile-pic"
-                  data-bs-toggle="dropdown"
-                  href="#"
-                  aria-expanded="false">
-                  <div class="avatar-sm">
-                    <img
-                     src="{{ Auth::user()->role === 'staff'
-        ? asset('storage/' . (optional(Auth::user()->staff)->foto ?? 'default.png'))
-        : asset('storage/default.png')
-    }}"
-                      alt="..."
-                      class="avatar-img rounded-circle" />
-                  </div>
-                  <span class="profile-username">
-                    <span class="op-7">Hi,</span>
-                    <span class="fw-bold">{{ Auth::user()->name }}</span>
-                  </span>
+              @php
+    if (Auth::user()->role === 'staff' && Auth::user()->staff && Auth::user()->staff->foto) {
+        $foto = asset('storage/' . Auth::user()->staff->foto);
+    } else {
+        $foto = asset('assets/img/logo-admin.jpg'); // FOTO ADMIN
+    }
+@endphp
 
-                </a>
-                <ul class="dropdown-menu dropdown-user animated fadeIn">
-                  <div class="dropdown-user-scroll scrollbar-outer">
-                    <li>
-                      <div class="user-box">
-                        <div class="avatar-lg">
-                          <img
-                            src="{{ Auth::user()->role === 'staff'
-        ? asset('storage/' . (optional(Auth::user()->staff)->foto ?? 'default.png'))
-        : asset('storage/default.png')
-    }}"
+
+
+
+             <li class="nav-item topbar-user dropdown hidden-caret">
+    <a
+        class="dropdown-toggle profile-pic"
+        data-bs-toggle="dropdown"
+        href="#"
+        aria-expanded="false">
+
+        <div class="avatar-sm">
+            <img
+                src="{{ $foto }}"
+                alt="Foto Profil"
+                class="avatar-img rounded-circle" />
+        </div>
+
+        <span class="profile-username">
+            <span class="op-7">Hi,</span>
+            <span class="fw-bold">{{ Auth::user()->name }}</span>
+        </span>
+    </a>
+
+    <ul class="dropdown-menu dropdown-user animated fadeIn">
+        <div class="dropdown-user-scroll scrollbar-outer">
+            <li>
+                <div class="user-box">
+                    <div class="avatar-lg">
+                        <img
+                            src="{{ $foto }}"
                             alt="image profile"
                             class="avatar-img rounded" />
-                        </div>
-                        <div class="u-text">
-                          <span class="profile-username">
+                    </div>
+
+                    <div class="u-text">
+                        <span class="profile-username">
                             <span class="op-7">Hi,</span>
-                            <span class="fw-bold">{{ Auth::user()->name }}</span>
-                            <span class="fw-bold">{{ Auth::user()->email }}</span>
-                           
-                          </span>
+                            <span class="fw-bold text-black">{{ Auth::user()->name }}</span><br>
+                            <span class="text-muted">{{ Auth::user()->email }}</span>
+                        </span>
+                    </div>
+                </div>
+            </li>
+        </div>
+    </ul>
+</li>
 
-
-                        </div>
-                      </div>
-                    </li>
-                  </div>
-                </ul>
-              </li>
             </ul>
           </div>
         </nav>
