@@ -9,7 +9,7 @@
     name="viewport" />
   <link
     rel="icon"
-    href="{{asset('assets/img/kaiadmin/logo-putih.png')}}"
+    href="{{asset('assets/img/kaiadmin/logo-woka.png')}}"
     type="image/x-icon" />
 
   <!-- Fonts and icons -->
@@ -381,7 +381,7 @@
   <script src="{{asset('assets/js/plugin/datatables/datatables.min.js')}}"></script>
 
   <!-- Bootstrap Notify -->
-  <script src="{{asset('assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
+  <!-- <script src="{{asset('assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js')}}"></script> -->
 
   <!-- jQuery Vector Maps -->
   <script src="{{asset('assets/js/plugin/jsvectormap/jsvectormap.min.js')}}"></script>

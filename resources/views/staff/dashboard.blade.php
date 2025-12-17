@@ -37,6 +37,11 @@
                 <div class="flex-shrink-0 me-3">
                     <i class="fas fa-layer-group fa-2x text-success"></i>
                 </div>
+                 <div>
+                    <p class="text-muted mb-0">Total Kategori</p>
+                    <h4 class="fw-bold">{{$totalKategori ?? 0}}</h4>
+                    
+                </div>
             </div>
         </div>
     </div>
@@ -46,7 +51,7 @@
     {{-- Tabel Aktivitas Mulai --}}
     <div class="card mt-5 shadow-sm border-0 rounded-3">
         <div class="card-header bg-white">
-            <h5 class="fw-bold mb-0">Aktivitas</h5>
+            <h5 class="fw-bold mb-0">Aktivitas Departemen</h5>
         </div>
         <div class="card-body p-0">
             <table class="table table-hover table-striped mb-0">
