@@ -143,7 +143,7 @@
                 <p>Dashboard</p>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{request()->routeIs('admin.departemen.*') ? 'active' : ''}}">
               <a href="{{ url('/admin/departemen') }}">
                 <i class="fas fa-th-list"></i>
                 <p>Departemen</p>
