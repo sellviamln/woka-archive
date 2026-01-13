@@ -43,7 +43,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin',])->gro
 
     Route::resource('dokumen', DokumenController::class)->parameters(['dokumen' => 'dokumen']);
     Route::get('/dokumen/download/{id}', [DokumenController::class, 'download'])->name('dokumen.download');
-
 });
 
 
@@ -57,12 +56,9 @@ Route::prefix('staff')->name('staff.')->middleware(['auth', 'role:staff'])->grou
     //kelola dokumen atau kategori
     Route::get('/dokumen', [KategoriController::class, 'kelolaDokumen'])->name('dokumen');
     Route::get('/dokumen', [DokumenController::class, 'Dokumen'])->name('dokumen.index');
-
     Route::get('/dokumen/tampil/{slug}', [DokumenController::class, 'tampil'])->name('dokumen.tampil-dokumen');
     Route::get('/dokumen/tambah/{id}', [DokumenController::class, 'tambah'])->name('dokumen.tambah');
-
-
     Route::post('/dokumen/upload/{kategori}', [DokumenController::class, 'upload'])->name('dokumen.upload');
-    
-
+    Route::get('/staff/dokumen/{dokumen}/download', [DokumenController::class, 'download'])
+        ->name('staff.dokumen.download');
 });

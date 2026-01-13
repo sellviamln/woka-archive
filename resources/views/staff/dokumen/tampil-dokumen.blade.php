@@ -59,13 +59,21 @@
 
                             <td>{{ strtoupper(pathinfo($dokumen->dokumen, PATHINFO_EXTENSION)) }}</td>
 
-                            <td>
+
+                            <td class="text-nowrap">
                                 <a href="{{ asset('storage/' . $dokumen->dokumen) }}"
                                     target="_blank"
-                                    class="btn btn-primary btn-sm">
+                                    class="btn btn-primary btn-sm me-1">
                                     Lihat
                                 </a>
+
+                                <a href="{{ asset('storage/' . $dokumen->dokumen) }}"
+                                    download
+                                    class="btn btn-success btn-sm">
+                                    Download
+                                </a>
                             </td>
+
                         </tr>
                         @endforeach
                     </tbody>
