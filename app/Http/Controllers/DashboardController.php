@@ -20,7 +20,7 @@ class DashboardController extends Controller
         $totalKategori = Kategori::count();
         $totalDokumen = Dokumen::count();
         $totalStaff = User::where('role', 'staff')->count();
-        $aktivitas = Aktivitas::with('staff')->get();
+        $aktivitas = Aktivitas::with('user', 'departemen')->get();
 
         return view('admin.dashboard', compact(
             'user',

@@ -46,7 +46,7 @@
     {{-- Card Profil --}}
     <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
         <div class="card-header border-0 py-3 px-4 d-flex align-items-center justify-content-between"
-            style="background-color: var(--bs-primary);">
+            style="background-color: #063172;">
             <h5 class="mb-0 fw-semibold text-white">
                 <i class="bi bi-person-badge-fill me-2 text-white"></i> Profil Staff
             </h5>

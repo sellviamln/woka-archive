@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aktivitas;
 use App\Models\Dokumen;
 use App\Models\Departemen;
 use App\Models\Kategori;
@@ -109,6 +110,14 @@ class DokumenController extends Controller
             'deskripsi' => $validated['deskripsi'],
         ]);
 
+        // ✅ Simpan aktivitas edit
+        Aktivitas::create([
+            'user_id'       => Auth::id(),
+            'departemen_id' => Auth::user()->staff->departemen_id,
+            'aktivitas'     => 'edit',
+            'keterangan'    => 'edit dokumen: ' . $dokumen->judul,
+        ]);
+
         return redirect()->route('admin.dokumen.index')
             ->with('success', 'Dokumen berhasil diperbarui.');
     }
@@ -165,12 +174,11 @@ class DokumenController extends Controller
             'tanggal_kadaluarsa' => 'required|date',
             'deskripsi'          => 'nullable',
             'dokumen'            => 'required|file|max:50000|mimes:docx,jpg,jpeg,png,pdf',
-            'kategori_id'        => 'required',
         ]);
 
         $filePath = $request->file('dokumen')->store('dokumen', 'public');
 
-        Dokumen::create([
+        $dokumen = Dokumen::create([
             'judul'              => $request->judul,
             'tanggal_upload'     => $request->tanggal_upload,
             'tanggal_kadaluarsa' => $request->tanggal_kadaluarsa,
@@ -180,6 +188,14 @@ class DokumenController extends Controller
             'kategori_id'        => $kategoriId,
             'departemen_id'      => Auth::user()->staff->departemen_id,
             'tipe_file'          => $request->file('dokumen')->getClientOriginalExtension(),
+        ]);
+
+        // ✅ Simpan aktivitas upload
+        Aktivitas::create([
+            'user_id'       => Auth::id(),
+            'departemen_id' => Auth::user()->staff->departemen_id,
+            'aktivitas'     => 'upload',
+            'keterangan'    => 'Upload dokumen: ' . $dokumen->judul,
         ]);
 
         return redirect()->route('staff.dokumen.index')
